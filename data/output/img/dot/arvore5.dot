@@ -1,0 +1,13 @@
+digraph BST {
+   node [shape=circle];
+  10 -> 5;
+  5 -> -8;
+  5 -> 8;
+  8 -> 6;
+  null_r_8[style=invis];
+   8 ->  null_r_8[style=invis];
+  10 -> 16;
+  null_l_16[style=invis];
+   16 ->  null_l_16[style=invis];
+  16 -> 56;
+}
