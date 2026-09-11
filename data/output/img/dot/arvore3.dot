@@ -1,9 +1,0 @@
-digraph BST {
-   node [shape=circle];
-  10 -> 5;
-  null_l_5[style=invis];
-   5 ->  null_l_5[style=invis];
-  5 -> 8;
-  null_r_10[style=invis];
-   10 ->  null_r_10[style=invis];
-}
