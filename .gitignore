@@ -9,3 +9,11 @@ __pycache__/
 env/
 venv/
 .venv/
+teste
+testeBST
+testeAVL
+testeSplay
+testePatricia
+testeTrie
+testeKD
+testeTreap

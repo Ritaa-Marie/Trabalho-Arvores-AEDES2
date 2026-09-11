@@ -22,6 +22,10 @@ long long BST::getTempoExecucao(){
     return this->tempo_execucao;
 }
 
+bool BST::getUltimaOperacaoSucesso(){
+    return this->ultima_operacao_sucesso;
+}
+
 void BST::setNumComparacoes(long long num){
     if(num >= 0){
         this->num_comparacoes = num;
@@ -36,6 +40,10 @@ void BST::setTempoExecucao(long long num){
     this->tempo_execucao = num;
 }
 
+void BST::setUltimaOperacaoSucesso(bool status){
+    this->ultima_operacao_sucesso = status;
+}
+
 BST::No* BST::inserirRecursivamente(No *no, int elemento){
     if(no == nullptr){
         No *noNovo = new No(elemento);
@@ -47,10 +55,8 @@ BST::No* BST::inserirRecursivamente(No *no, int elemento){
     if(elemento < no->dado){
         no->esquerda = inserirRecursivamente(no->esquerda, elemento);
         return no;
-    } 
-
-    this->num_comparacoes++;
-    if(elemento > no->dado) {
+    } else if(elemento > no->dado) {
+        this->num_comparacoes++;
         no->direita = inserirRecursivamente(no->direita, elemento);
         return no;
     }
@@ -80,37 +86,30 @@ BST::No* BST::deletarRecursivamente(No *no, int elemento){
     this->num_comparacoes++;
     if(elemento < no->dado){
         no->esquerda = deletarRecursivamente(no->esquerda, elemento);
-    } else {
+    } else if(elemento > no->dado){
         this->num_comparacoes++;
-        if(elemento > no->dado){
-            no->direita = deletarRecursivamente(no->direita, elemento);
+        no->direita = deletarRecursivamente(no->direita, elemento);
+    } else {
+        this->ultima_operacao_sucesso = true;
+        if(no->esquerda == nullptr && no->direita == nullptr){
+            delete no;
+            return nullptr;
+        } else if(no->esquerda != nullptr && no->direita == nullptr){
+            No *novo = no->esquerda;
+            delete no;
+            return novo;
+        } else if(no->direita != nullptr && no->esquerda == nullptr){
+            No *novo = no->direita;
+            delete no;
+            return novo;
         } else {
-            if(no->esquerda == nullptr && no->direita == nullptr){
-                delete no;
-                this->ultima_operacao_sucesso = true;
-                no = nullptr;
-                return nullptr;
-            } else if(no->esquerda != nullptr && no->direita == nullptr){
-                No *novo = no->esquerda;
-                delete no;
-                this->ultima_operacao_sucesso = true;
-                no = novo;
-                return novo;
-            } else if(no->direita != nullptr && no->esquerda == nullptr){
-                No *novo = no->direita;
-                delete no;
-                this->ultima_operacao_sucesso = true;
-                no = novo;
-                return novo;
-            } else {
-                No *sucessor = buscarSucessor(no->direita);
-                no->dado = sucessor->dado;
-                no->direita = deletarRecursivamente(no->direita, sucessor->dado);
-                this->ultima_operacao_sucesso = true;
-                return no;
-            }
+            No *sucessor = buscarSucessor(no->direita);
+            no->dado = sucessor->dado;
+            no->direita = deletarRecursivamente(no->direita, sucessor->dado);
+            return no;
         }
     }
+
     return no;
 }
 
@@ -152,6 +151,17 @@ void BST::exibirInOrdemRecursivamente(No *no){
 
 }
 
+int BST::calcularAlturaRecursivo(No *no) {
+    if (no == nullptr) {
+        return -1;
+    }
+
+    int alturaEsquerda = calcularAlturaRecursivo(no->esquerda);
+    int alturaDireita = calcularAlturaRecursivo(no->direita);
+
+    return 1 + max(alturaEsquerda, alturaDireita);
+}
+
 void BST::gerarDOTRecursivo(No *no, std::ofstream& arquivo){
     if(no == nullptr){
         return;
@@ -179,18 +189,18 @@ void BST::gerarDOTRecursivo(No *no, std::ofstream& arquivo){
 void BST::inserirElemento(int elemento){
     this->raiz = inserirRecursivamente(this->raiz, elemento);
     if(this->ultima_operacao_sucesso){
-        cout << "Elemento inserido com sucesso" <<endl;
+        cout << "Elemento inserido na BST com sucesso" <<endl;
     } else {
-        cout << "Esse elemento já existe na árvore" <<endl;
+        cout << "Esse elemento já existe na árvore BST" <<endl;
     }
 }
 
 void BST::deletarElemento(int elemento){
     this->raiz = deletarRecursivamente(this->raiz, elemento);
     if(this->ultima_operacao_sucesso){
-        cout << "Elemento deletado com sucesso" <<endl;
+        cout << "Elemento deletado da BST com sucesso" <<endl;
     } else {
-        cout << "Erro ao deletar elemento" <<endl;
+        cout << "Erro ao deletar elemento da BST" <<endl;
     }
 }
 
@@ -205,18 +215,22 @@ bool BST::buscarElemento(int elemento){
 
 void BST::exibirBSTInOrdem(){
     if(this->raiz == nullptr){
-        cout<< "A árvore está vazia" << endl;
+        cout<< "A árvore BST está vazia" << endl;
         return;
     }
 
     exibirInOrdemRecursivamente(this->raiz);
 }
 
+int BST::calcularAlturaBST(){
+    return calcularAlturaRecursivo(this->raiz);
+}
+
 void BST::gerarDOT(const std::string& caminho){
     ofstream arquivo(caminho);
 
     if(!arquivo.is_open()){
-        cerr << "Erro ao abrir arquivo da exportação do DOT.\n";
+        cerr << "Erro ao abrir arquivo da exportação do DOT da BST.\n";
         return;
     }
 
@@ -233,5 +247,4 @@ void BST::gerarDOT(const std::string& caminho){
 
     arquivo << "}\n";
     arquivo.close();
-
 }

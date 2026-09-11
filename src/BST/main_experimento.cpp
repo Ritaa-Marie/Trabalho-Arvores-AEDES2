@@ -9,23 +9,23 @@ int main(){
     BST arvore;
     
     arvore.inserirElemento(10);
-    arvore.gerarDOT("data/output/img/dot/arvore1.dot");
+    //arvore.gerarDOT("data/output/img/dot/arvore1.dot");
     arvore.inserirElemento(5);
-    arvore.gerarDOT("data/output/img/dot/arvore2.dot");
+    //arvore.gerarDOT("data/output/img/dot/arvore2.dot");
     arvore.inserirElemento(8);
-    arvore.gerarDOT("data/output/img/dot/arvore3.dot");
+    //arvore.gerarDOT("data/output/img/dot/arvore3.dot");
     arvore.inserirElemento(16);
     arvore.inserirElemento(-8);
     arvore.inserirElemento(56);
     arvore.inserirElemento(10);
     arvore.inserirElemento(6);
-    arvore.gerarDOT("data/output/img/dot/arvore4.dot");
+    //arvore.gerarDOT("data/output/img/dot/arvore4.dot");
     arvore.exibirBSTInOrdem();
     arvore.deletarElemento(45);
     arvore.exibirBSTInOrdem();
-    arvore.gerarDOT("data/output/img/dot/arvore5.dot");
+    //arvore.gerarDOT("data/output/img/dot/arvore5.dot");
     arvore.deletarElemento(5);
-    arvore.gerarDOT("data/output/img/dot/arvore6.dot");
+    arvore.gerarDOT("data/output/img/dot/arvoreBST.dot");
     arvore.exibirBSTInOrdem();
 
     int numComp = arvore.getNumComparacoes();

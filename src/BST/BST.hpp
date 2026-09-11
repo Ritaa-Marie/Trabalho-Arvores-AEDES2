@@ -27,6 +27,7 @@ class BST {
         No* buscarRecursivamente(No *no, int elemento);
         void exibirInOrdemRecursivamente(No *no);
         void destruirBST(No *no);
+        int calcularAlturaRecursivo(No *no);
         void gerarDOTRecursivo(No *no, std::ofstream& arquivo);
 
     public:
@@ -39,15 +40,18 @@ class BST {
         long long getNumComparacoes();
         long long getConsumoMemoria();
         long long getTempoExecucao();
+        bool getUltimaOperacaoSucesso();
         void setNumComparacoes(long long num);
         void setConsumoMemoria(long long num);
         void setTempoExecucao(long long num);
+        void setUltimaOperacaoSucesso(bool status);
 
         void inserirElemento(int elemento);
         void deletarElemento(int elemento);
         bool buscarElemento(int elemento);
         void exibirBSTInOrdem();
         void gerarDOT(const std::string& caminho);
+        int calcularAlturaBST();
 };
 
 #endif
