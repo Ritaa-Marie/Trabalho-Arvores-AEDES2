@@ -5,7 +5,7 @@
 
 using namespace std;
 
-AVL::AVL(): num_comparacoes(0), consumo_memoria(0), num_rotacoes(0), tempo_execucao(0), ultima_operacao_sucesso(false), raiz(nullptr) {}
+AVL::AVL(): num_comparacoes(0), consumo_memoria(0), tempo_execucao(0), num_rotacoes(0), ultima_operacao_sucesso(false), raiz(nullptr) {}
 
 AVL::~AVL(){
     destruirAVL(this->raiz);
