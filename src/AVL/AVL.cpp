@@ -288,6 +288,9 @@ void AVL::gerarDOTRecursivo(No *no, std::ofstream& arquivo){
         return;
     }
 
+    int fatorBalanceamento = calcularFatorBalanceamento(no);
+    arquivo << "  " << no->dado << " [label=\"" << no->dado << "\\nFB:" << fatorBalanceamento << "\"];\n";
+
     if(no->esquerda != nullptr || no->direita != nullptr){
         if(no->esquerda != nullptr){
             arquivo << "  " << no->dado << " -> " << no->esquerda->dado << ";\n";

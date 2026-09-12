@@ -55,7 +55,7 @@ int main(){
     arvore.deletarElemento(40);
     
     cout << "\nTotal de rotações: " << arvore.getNumRotacoes() << endl; 
-    arvore.gerarDOT("data/output/img/dot/teste_avl.dot");
+    arvore.gerarDOT("data/output/img/dot/teste_avlBalanceada.dot");
 
     return 0;
 }
