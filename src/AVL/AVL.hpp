@@ -2,6 +2,8 @@
 #define AVL_HPP
 #include <fstream>
 #include <string>
+#include <algorithm>
+#include <iostream>
 
 class AVL {
     private:
