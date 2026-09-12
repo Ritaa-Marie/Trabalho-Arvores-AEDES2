@@ -17,19 +17,25 @@ Treap::No* Treap::inserirRecursivamente(No *no, int elemento){
     if(no == nullptr){
         uint64_t prioridade = gerarPrioridade();
         No *novo = new No(elemento, prioridade);
+        this->consumo_memoria += sizeof(No);
+        this->ultima_operacao_sucesso = true;
         return novo;
     }
 
+    this->num_comparacoes++;
     if(elemento < no->dado){
         no->esquerda = inserirRecursivamente(no->esquerda, elemento);
         if(no->esquerda != nullptr && no->esquerda->prioridade > no->prioridade){
             return rotacaoDireita(no);
         }
     } else if(elemento > no->dado){
+        this->num_comparacoes++;
         no->direita = inserirRecursivamente(no->direita, elemento);
         if(no->direita != nullptr && no->direita->prioridade > no->prioridade){
             return rotacaoEsquerda(no);
         }
+    } else {
+        this->ultima_operacao_sucesso = false;
     }
 
     return no;
@@ -37,16 +43,21 @@ Treap::No* Treap::inserirRecursivamente(No *no, int elemento){
 
 Treap::No* Treap::deletarRecursivamente(No *no, int elemento){
     if(no == nullptr){
+        this->ultima_operacao_sucesso = false;
         return no;
     }
 
+    this->num_comparacoes++;
     if(elemento < no->dado){
         no->esquerda = deletarRecursivamente(no->esquerda, elemento);
     } else if(elemento > no->dado){
+        this->num_comparacoes++;
         no->direita = deletarRecursivamente(no->direita, elemento);
     } else {
+        this->ultima_operacao_sucesso = true;
         if(no->direita == nullptr && no->esquerda == nullptr){
             delete no;
+            this->consumo_memoria -= sizeof(No);
             return nullptr;
         } else if(no->esquerda == nullptr) {
             No *novaRaiz = rotacaoEsquerda(no);
@@ -77,9 +88,11 @@ Treap::No* Treap::buscarRecursivamente(No *no, int elemento){
         return nullptr;
     }
 
+    this->num_comparacoes++;
     if(elemento < no->dado){
         return buscarRecursivamente(no->esquerda, elemento);
     } else if(elemento > no->dado){
+        this->num_comparacoes++;
         return buscarRecursivamente(no->direita, elemento);
     }
 
@@ -128,7 +141,7 @@ Treap::No* Treap::rotacaoEsquerda(No *no){
     No *filhoEsquerdoOrfao = novaRaiz->esquerda;
 
     novaRaiz->esquerda = no;
-    no->direito = filhoEsquerdoOrfao;
+    no->direita = filhoEsquerdoOrfao;
 
     this->num_rotacoes++;
     return novaRaiz;
@@ -136,7 +149,7 @@ Treap::No* Treap::rotacaoEsquerda(No *no){
 
 int Treap::calcularAlturaRecursivamente(No *no){
     if(no == nullptr){
-        return 0;
+        return -1;
     }
 
     int tamDireita = calcularAlturaRecursivamente(no->direita);
@@ -149,6 +162,8 @@ void Treap::gerarDOTRecursivo(No *no, std::ofstream& arquivo){
     if(no == nullptr){
         return;
     }
+
+    arquivo << "  " << no->dado << " [label=\"" << no->dado << "\\nP:" << no->prioridade << "\"];\n";
 
     if(no->esquerda != nullptr || no->direita != nullptr){
         if(no->esquerda != nullptr){
@@ -212,6 +227,7 @@ void Treap::setUltimaOperacaoSucesso(bool status){
 }
 
 void Treap::inserirElemento(int elemento){
+    this->ultima_operacao_sucesso = false;
     this->raiz = inserirRecursivamente(this->raiz, elemento);
 
     if(this->ultima_operacao_sucesso){
@@ -230,6 +246,7 @@ bool Treap::buscarElemento(int elemento){
     }
 }
 void Treap::deletarElemento(int elemento){
+    this->ultima_operacao_sucesso = false;
     this->raiz = deletarRecursivamente(this->raiz, elemento);
     if(ultima_operacao_sucesso){
         cout << "Elemento deletado da Treap com sucesso" <<endl;
@@ -247,7 +264,7 @@ void Treap::exibirTreapInOrdem(){
     exibirInOrdemRecursivamente(this->raiz);
 }
 
-int Treap::calcularAlturaTreap(){
+int Treap::alturaTreap(){
     return calcularAlturaRecursivamente(this->raiz);
 }
 
@@ -264,7 +281,7 @@ void Treap::gerarDOT(const std::string& caminho){
 
     if(this->raiz != nullptr){
         if(this->raiz->esquerda == nullptr && this->raiz->direita == nullptr){
-            arquivo << "  " << this->raiz->dado << ";\n";
+            arquivo << "  " << this->raiz->dado << " [label=\"" << this->raiz->dado << "\\nP:" << this->raiz->prioridade << "\"];\n";
         } else {
             gerarDOTRecursivo(this->raiz, arquivo);
         }

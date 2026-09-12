@@ -5,6 +5,7 @@
 #include <random>
 #include <cstdint>
 #include <algorithm>
+#include <iostream>
 
 class Treap{
     private:
@@ -60,7 +61,7 @@ class Treap{
         void deletarElemento(int elemento);
         void exibirTreapInOrdem();
         void gerarDOT(const std::string& caminho);
-        int calcularAlturaTreap();
+        int alturaTreap();
 };
 
 
