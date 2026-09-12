@@ -2,6 +2,7 @@
 #define BST_hpp
 #include <string>
 #include <fstream>
+#include <algorithm>
 
 class BST {
     private: 
