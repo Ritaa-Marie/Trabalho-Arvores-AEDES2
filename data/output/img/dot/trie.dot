@@ -1,0 +1,37 @@
+digraph Trie {
+    node [fontname="Arial"];
+    edge [fontname="Arial"];
+    "0x64de47f16550" [label="raiz", shape=circle];
+    "0x64de47f16550" -> "0x64de47f17760" [label="a"];
+    "0x64de47f17760" [label="", shape=circle];
+    "0x64de47f17760" -> "0x64de47f17840" [label="c"];
+    "0x64de47f17840" [label="", shape=circle];
+    "0x64de47f17840" -> "0x64de47f17920" [label="a"];
+    "0x64de47f17920" [label="", shape=circle];
+    "0x64de47f17920" -> "0x64de47f17a00" [label="o"];
+    "0x64de47f17a00" [label="", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "0x64de47f16550" -> "0x64de47f16630" [label="c"];
+    "0x64de47f16630" [label="", shape=circle];
+    "0x64de47f16630" -> "0x64de47f16710" [label="a"];
+    "0x64de47f16710" [label="", shape=circle];
+    "0x64de47f16710" -> "0x64de47f17680" [label="o"];
+    "0x64de47f17680" [label="", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "0x64de47f16710" -> "0x64de47f17220" [label="r"];
+    "0x64de47f17220" [label="", shape=circle];
+    "0x64de47f17220" -> "0x64de47f17300" [label="r"];
+    "0x64de47f17300" [label="", shape=circle];
+    "0x64de47f17300" -> "0x64de47f173e0" [label="o"];
+    "0x64de47f173e0" [label="", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "0x64de47f173e0" -> "0x64de47f174c0" [label="c"];
+    "0x64de47f174c0" [label="", shape=circle];
+    "0x64de47f174c0" -> "0x64de47f175a0" [label="a"];
+    "0x64de47f175a0" [label="", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "0x64de47f16710" -> "0x64de47f167f0" [label="s"];
+    "0x64de47f167f0" [label="", shape=circle];
+    "0x64de47f167f0" -> "0x64de47f16f80" [label="u"];
+    "0x64de47f16f80" [label="", shape=circle];
+    "0x64de47f16f80" -> "0x64de47f17060" [label="l"];
+    "0x64de47f17060" [label="", shape=circle];
+    "0x64de47f17060" -> "0x64de47f17140" [label="o"];
+    "0x64de47f17140" [label="", shape=doublecircle, style=filled, fillcolor=lightblue];
+}
