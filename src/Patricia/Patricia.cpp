@@ -344,37 +344,37 @@ std::string Patricia::normalizarPalavra(const std::string& palavra){
 }
 
 long long Patricia::getNumComparacoes(){
-return this->num_comparacoes;
+    return this->num_comparacoes;
 }
 
 long long Patricia::getConsumoMemoria(){
-return this->consumo_memoria;
+    return this->consumo_memoria;
 }
 
 long long Patricia::getTempoExecucao(){
-return this->tempo_execucao;
+    return this->tempo_execucao;
 }
 
 bool Patricia::getUltimaOperacaoSucesso(){
-return this->ultima_operacao_sucesso;
+    return this->ultima_operacao_sucesso;
 }
 
 void Patricia::setNumComparacoes(long long num){
-if(num >= 0){
-this->num_comparacoes = num;
-}
+    if(num >= 0){
+    this->num_comparacoes = num;
+    }
 }
 
 void Patricia::setConsumoMemoria(long long num){
-this->consumo_memoria = num;
+    this->consumo_memoria = num;
 }
 
 void Patricia::setTempoExecucao(long long num){
-this->tempo_execucao = num;
+    this->tempo_execucao = num;
 }
 
 void Patricia::setUltimaOperacaoSucesso(bool status){
-this->ultima_operacao_sucesso = status;
+    this->ultima_operacao_sucesso = status;
 }
 
 void Patricia::inserirElemento(const std::string& palavra){
