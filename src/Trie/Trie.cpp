@@ -6,6 +6,7 @@ Trie::Trie(): idNoAtual(0), num_comparacoes(0), consumo_memoria(0), tempo_execuc
 
 Trie::~Trie(){
     destruirTrie(this->raiz);
+    raiz = nullptr;
 }
 
 Trie::No* Trie::criarNo(){
@@ -213,7 +214,6 @@ int Trie::calcularAlturaRecursivamente(No *no){
 
     return (1 + alturaMaxima);
 }
-
 
 void Trie::gerarDOTRecursivo(No *no, std::ofstream& arquivo) {
     if (no == nullptr) {
