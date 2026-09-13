@@ -131,7 +131,7 @@ Patricia::No* Patricia::deletarRecursivamente(No *no, const std::string& palavra
         }
     }
 
-    if(numFilhos == 0 && no->fim == false && no != raiz){
+    if(numFilhos == 0 && no->fim == false){
         if(no == raiz){
             raiz = nullptr;
         }
