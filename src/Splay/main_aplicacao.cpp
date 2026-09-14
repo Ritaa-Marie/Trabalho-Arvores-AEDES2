@@ -36,8 +36,6 @@ void testarSplayCache(Splay& splay, const std::vector<int>& dataset) {
     logPrint("Tamanho dos 10% mais acessados: " + to_string(tamanhoMaisAcessados) + " elementos.\n");
     logPrint("Simulando " + to_string(totalBuscas) + " acessos com padrão 80/20...\n\n");
 
-    splay.setNumComparacoes(0);
-
     auto inicio = std::chrono::high_resolution_clock::now();
 
     for (int i = 0; i < totalBuscas; i++) {
@@ -57,8 +55,6 @@ void testarSplayCache(Splay& splay, const std::vector<int>& dataset) {
 
     logPrint("-> Tempo total para 10.000 buscas: " + to_string(duracao) + " ms\n");
     logPrint("-> Tempo médio por busca: " + to_string(static_cast<double>(duracao) / totalBuscas) + " ms\n");
-    long long totalComps = splay.getNumComparacoes();
-    logPrint("-> Total de Comparações: " + to_string(totalComps) + "\n");
     
     int ultimoElementoBuscado = dataset[0];
     splay.buscarElemento(ultimoElementoBuscado);

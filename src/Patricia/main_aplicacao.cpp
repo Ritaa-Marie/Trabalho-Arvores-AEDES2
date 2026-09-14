@@ -25,8 +25,6 @@ void testarPatriciaLPM(Patricia& patricia, const vector<string>& ipsParaTestar) 
     logPrint("  APLICAÇÃO: Patricia Tree (Roteamento IP)\n");
     logPrint("=================================================\n\n");
 
-    patricia.setNumComparacoes(0);
-
     auto inicio = chrono::high_resolution_clock::now();
 
     for (const string& ip : ipsParaTestar) {
@@ -37,10 +35,7 @@ void testarPatriciaLPM(Patricia& patricia, const vector<string>& ipsParaTestar) 
     auto fim = chrono::high_resolution_clock::now();
     auto duracao = chrono::duration_cast<chrono::microseconds>(fim - inicio).count();
 
-    long long totalComparacoes = patricia.getNumComparacoes();
-
     logPrint("\n-> Tempo total para " + to_string(ipsParaTestar.size()) + " consultas: " + to_string(duracao) + " us (" + to_string(static_cast<double>(duracao) / 1000.0) + " ms)\n");
-    logPrint("-> Total de Comparações: " + to_string(totalComparacoes) + "\n");
     logPrint("=================================================\n\n");
 
     if (arqSaida.is_open()) {

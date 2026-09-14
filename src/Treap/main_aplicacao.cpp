@@ -27,8 +27,6 @@ void testarTreapFilaPrioridade(Treap& treap, int numInsercoes) {
     logPrint("  APLICAÇÃO: Treap (Fila de Prioridade)\n");
     logPrint("=================================================\n\n");
 
-    treap.setNumComparacoes(0);
-
     auto inicio = chrono::high_resolution_clock::now();
 
     int tarefaTopo;
@@ -38,8 +36,6 @@ void testarTreapFilaPrioridade(Treap& treap, int numInsercoes) {
 
     auto fim = chrono::high_resolution_clock::now();
     auto duracao = chrono::duration_cast<chrono::microseconds>(fim - inicio).count();
-
-    long long totalComparacoes = treap.getNumComparacoes();
 
     if (sucesso) {
         logPrint("-> Elemento no Topo da Fila (Maior Prioridade):\n");
@@ -51,7 +47,6 @@ void testarTreapFilaPrioridade(Treap& treap, int numInsercoes) {
 
     logPrint("-> Total de tarefas na Treap: " + to_string(numInsercoes) + "\n");
     logPrint("-> Tempo para consultar topo da fila: " + to_string(duracao) + " us (" + to_string(static_cast<double>(duracao) / 1000.0) + " ms)\n");
-    logPrint("-> Total de Comparações: " + to_string(totalComparacoes) + "\n");
     logPrint("=================================================\n\n");
 
     if (arqSaida.is_open()) {
