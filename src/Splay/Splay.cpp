@@ -291,6 +291,14 @@ bool Splay::getUltimaOperacaoSucesso(){
     return this->ultima_operacao_sucesso;
 }
 
+int Splay::getRaizValor(){
+    if (this->raiz == nullptr) {
+        throw runtime_error("Erro: Tentativa de acessar a raiz de uma árvore vazia!");
+    }
+
+    return this->raiz->dado;
+}
+
 void Splay::setNumComparacoes(long long num){
     if(num >= 0){
         this->num_comparacoes = num;
@@ -323,11 +331,11 @@ void Splay::inserirElemento(int elemento){
         splay(noInserido);
     }
 
-    if(this->ultima_operacao_sucesso){
+    /*if(this->ultima_operacao_sucesso){
         cout << "Elemento inserido na árvore Splay com sucesso" << endl;
     } else {
         cout << "Esse elemento já existe na árvore Splay" << endl;
-    }
+    }*/
 }
 
 bool Splay::buscarElemento(int elemento){

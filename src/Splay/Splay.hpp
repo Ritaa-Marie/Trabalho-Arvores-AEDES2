@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
+#include <stdexcept>
 
 class Splay{
     // árvore em bottom-up, seguindo o artigo "Self-Adjusting Binary Search Trees"
@@ -47,6 +48,7 @@ class Splay{
         long long getNumComparacoes();
         long long getTempoExecucao();
         long long getNumRotacoes();
+        int getRaizValor();
         bool getUltimaOperacaoSucesso();
         void setConsumoMemoria(long long num);
         void setNumComparacoes(long long num);
