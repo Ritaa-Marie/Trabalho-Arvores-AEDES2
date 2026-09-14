@@ -1,0 +1,21 @@
+=================================================
+  APLICAÇÃO: Trie Autocompletar
+=================================================
+Buscando sugestões para o prefixo: 'algoritmo'...
+
+-> Sugestões encontradas (8997):
+   - algoritmobuscabasea
+   - algoritmobuscabaseb
+   - algoritmobuscabaseba
+   - algoritmobuscabasebaa
+   - algoritmobuscabasebab
+   - algoritmobuscabasebac
+   - algoritmobuscabasebae
+   - algoritmobuscabasebaf
+   - algoritmobuscabasebag
+   - algoritmobuscabasebah
+   ... e mais 8987 palavras.
+
+-> Tempo de execução da busca por prefixo: 7130 us (7.130000 ms)
+=================================================
+

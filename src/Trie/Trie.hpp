@@ -48,6 +48,8 @@ class Trie{
         void transformarMinusculo(std::string& palavra);
         void substituirCaracteresEspeciais(std::string& palavra);
         std::string normalizarPalavra(const std::string& palavra);
+        Trie::No* buscarNoDoPrefixo(No* no, const std::string& prefixo, size_t caractere);
+        void coletarPalavrasComPrefixo(No* no, std::string& palavraAtual, std::vector<std::string>& resultados);
 
     public:
         Trie();
@@ -71,6 +73,7 @@ class Trie{
         void exibirTrieInOrdem();
         int alturaTrie();
         void gerarDOT(const std::string& caminho);
+        std::vector<std::string> autocompletar(const std::string& prefixo);
 };
 
 #endif

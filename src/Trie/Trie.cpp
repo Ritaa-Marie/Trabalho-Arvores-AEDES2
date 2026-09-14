@@ -288,11 +288,11 @@ void Trie::inserirElemento(const std::string& palavra){
     this->ultima_operacao_sucesso = false;
     raiz = inserirRecursivamente(raiz, palavraTratada, 0);
     
-    if(this->ultima_operacao_sucesso){
+    /*if(this->ultima_operacao_sucesso){
         cout << "Elemento inserido na árvore Trie com sucesso" << endl;
     } else {
         cout << "Esse elemento já existe na árvore Trie" << endl;
-    }
+    }*/
 }
 
 bool Trie::buscarElemento(const std::string& palavra){
@@ -361,4 +361,58 @@ void Trie::gerarDOT(const std::string& caminho) {
 
     arquivo << "}\n";
     arquivo.close();
+}
+
+// Funções para aplicação
+Trie::No* Trie::buscarNoDoPrefixo(No* no, const std::string& prefixo, size_t caractere) {
+    if (no == nullptr) {
+        return nullptr;
+    }
+
+    if (caractere == prefixo.length()) {
+        return no;
+    }
+
+    int indiceLetra = prefixo[caractere] - 'a';
+    if (indiceLetra < 0 || indiceLetra >= ALFABETO) {
+        return nullptr;
+    }
+
+    return buscarNoDoPrefixo(no->filhos[indiceLetra], prefixo, caractere + 1);
+}
+
+void Trie::coletarPalavrasComPrefixo(No* no, std::string& palavraAtual, std::vector<std::string>& resultados) {
+    if (no == nullptr) {
+        return;
+    }
+
+    if (no->fim) {
+        resultados.push_back(palavraAtual);
+    }
+
+    for (int i = 0; i < ALFABETO; i++) {
+        if (no->filhos[i] != nullptr) {
+            palavraAtual.push_back('a' + i);
+            coletarPalavrasComPrefixo(no->filhos[i], palavraAtual, resultados);
+            palavraAtual.pop_back();
+        }
+    }
+}
+
+std::vector<std::string> Trie::autocompletar(const std::string& prefixo) {
+    std::vector<std::string> sugestoes;
+    std::string prefixoTratado = normalizarPalavra(prefixo);
+
+    if (prefixoTratado.empty() || this->raiz == nullptr) {
+        return sugestoes;
+    }
+
+    No* noPrefixo = buscarNoDoPrefixo(this->raiz, prefixoTratado, 0);
+
+    if (noPrefixo != nullptr) {
+        std::string palavraAtual = prefixoTratado;
+        coletarPalavrasComPrefixo(noPrefixo, palavraAtual, sugestoes);
+    }
+
+    return sugestoes;
 }
