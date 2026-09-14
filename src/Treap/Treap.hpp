@@ -62,6 +62,7 @@ class Treap{
         void exibirTreapInOrdem();
         void gerarDOT(const std::string& caminho);
         int alturaTreap();
+        bool obterMaiorPrioridade(int& dado, uint64_t& prioridadeSaida);
 };
 
 

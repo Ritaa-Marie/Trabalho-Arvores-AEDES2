@@ -230,11 +230,11 @@ void Treap::inserirElemento(int elemento){
     this->ultima_operacao_sucesso = false;
     this->raiz = inserirRecursivamente(this->raiz, elemento);
 
-    if(this->ultima_operacao_sucesso){
+    /*if(this->ultima_operacao_sucesso){
         cout << "Elemento inserido na árvore Treap com sucesso" << endl;
     } else {
         cout << "Esse elemento já existe na árvore Treap" << endl;
-    }
+    }*/
 }
 
 bool Treap::buscarElemento(int elemento){
@@ -289,4 +289,15 @@ void Treap::gerarDOT(const std::string& caminho){
 
     arquivo << "}\n";
     arquivo.close();
+}
+
+// Função para aplicação
+bool Treap::obterMaiorPrioridade(int& dado, uint64_t& prioridadeSaida) {
+    if (this->raiz == nullptr) {
+        return false;
+    }
+
+    dado = this->raiz->dado;
+    prioridadeSaida = this->raiz->prioridade;
+    return true;
 }

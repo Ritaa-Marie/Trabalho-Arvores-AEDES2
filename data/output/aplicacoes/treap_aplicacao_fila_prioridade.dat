@@ -1,0 +1,13 @@
+=================================================
+  APLICAÇÃO: Treap (Fila de Prioridade)
+=================================================
+
+-> Elemento no Topo da Fila (Maior Prioridade):
+   - Chave/Tarefa: 41665
+   - Prioridade:   18446576705224215053
+
+-> Total de tarefas na Treap: 100000
+-> Tempo para consultar topo da fila: 0 us (0.000000 ms)
+-> Total de Comparações: 0
+=================================================
+
