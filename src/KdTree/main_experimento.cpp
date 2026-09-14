@@ -31,6 +31,7 @@ int main() {
     tree2D.deletarElemento({99.0, 99.0});
     tree2D.deletarElemento({3.0, 6.0});
     tree2D.exibirKdTreeInOrdem();
+    cout << "memória: " << tree2D.getConsumoMemoria() << endl;
 
     KdTree treePequena(2);
     
@@ -41,6 +42,7 @@ int main() {
     treePequena.deletarElemento({5.0, 5.0});
 
     cout << "-> Exibindo árvore após esvaziamento completo:\n";
+    cout << "memória: " << treePequena.getConsumoMemoria() << endl;
     treePequena.exibirKdTreeInOrdem();
 
     KdTree tree3D(3);
@@ -50,7 +52,11 @@ int main() {
 
     tree3D.exibirKdTreeInOrdem();
     tree3D.buscarElementoMaisProximo({1.1, 2.1, 3.1});
+    cout << "memória: " << tree3D.getConsumoMemoria() << endl;
+    cout << "altura: " << tree3D.alturaKdTree() << endl;
+    cout << "comparações: " << tree3D.getNumComparacoes() << endl;
 
-    tree2D.gerarDOT("kdtree.dot");
+
+    //tree2D.gerarDOT("kdtree.dot");
     return 0;
 }

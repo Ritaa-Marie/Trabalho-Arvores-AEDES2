@@ -1,0 +1,16 @@
+=================================================
+  APLICAÇÃO: KD-Tree (Busca de K-Vizinhos Próximos)
+=================================================
+
+-> Ponto de Consulta: (9.000000, 2.000000)
+-> K (quantidade de vizinhos solicitados): 3
+
+-> Vizinhos Mais Próximos Encontrados (3):
+   1. Coordenadas: (9.923800, 1.578000)
+   2. Coordenadas: (8.890300, 0.143600)
+   3. Coordenadas: (11.604200, 3.379700)
+
+-> Métricas de Desempenho:
+   - Tempo de Execução: 937 us (0.937000 ms)
+=================================================
+

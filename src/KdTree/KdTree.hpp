@@ -8,6 +8,7 @@
 #include <vector>
 #include <cmath>
 #include <limits>
+#include <queue>
 
 class KdTree{
     private: 
@@ -46,6 +47,7 @@ class KdTree{
         double calcularDistancia(const std::vector<double>& ponto1, const std::vector<double>& ponto2);
         bool pontosIguais(const std::vector<double>& ponto1, const std::vector<double>& ponto2);
         No* buscarMinimo(No* no, int dimensaoAlvo, int profundidadeAtual);
+        void buscarKVizinhosProximosRecursivo(No* no, const std::vector<double>& alvo, int k, int profundidade, std::priority_queue<std::pair<double, std::vector<double>>>& maxHeap);
 
     public:
         KdTree(int k = 2);
@@ -71,6 +73,7 @@ class KdTree{
         int alturaKdTree();
         void buscarPontosNoDelimitador(const std::vector<double>& min, const std::vector<double>& max);
         void gerarDOT(const std::string& caminho);
+        std::vector<std::vector<double>> buscarKVizinhosProximos(const std::vector<double>& alvo, int k);
 };
 
 #endif

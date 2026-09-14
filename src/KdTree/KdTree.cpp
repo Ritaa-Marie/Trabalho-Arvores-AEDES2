@@ -29,6 +29,7 @@ KdTree::No* KdTree::inserirRecursivamente(No* no, const std::vector<double>& coo
     }
 
     bool saoIguais = pontosIguais(coord, no->ponto.coordenadas);
+    this->num_comparacoes++;
     if(saoIguais){
         this->ultima_operacao_sucesso = false;
         return no;
@@ -55,18 +56,23 @@ KdTree::No* KdTree::deletarRecursivamente(No* no, const std::vector<double>& coo
     int eixoAtual = definirEixo(profundidade);
     bool saoIguais = pontosIguais(coord, no->ponto.coordenadas);
 
+    this->num_comparacoes++;
     if(saoIguais) {
         this->ultima_operacao_sucesso = true;
-        if (no->esquerda == nullptr && no->direita == nullptr) {
+        if(no->esquerda == nullptr && no->direita == nullptr){
+            this->num_comparacoes++;
+            this->consumo_memoria -= sizeof(No) + no->ponto.coordenadas.capacity() * sizeof(double);
             delete no;
             return nullptr;
         }
 
-        if (no->direita != nullptr) {
+        this->num_comparacoes++;
+        if(no->direita != nullptr){
             No* minimo = buscarMinimo(no->direita, eixoAtual, profundidade + 1);
             no->ponto = minimo->ponto;
             no->direita = deletarRecursivamente(no->direita, minimo->ponto.coordenadas, profundidade + 1);
         } else if (no->esquerda != nullptr) {
+            this->num_comparacoes++;
             No* minimo = buscarMinimo(no->esquerda, eixoAtual, profundidade + 1);
             no->ponto = minimo->ponto;
             no->direita = no->esquerda;
@@ -93,6 +99,7 @@ KdTree::No* KdTree::buscarRecursivamente(No* no, const std::vector<double>& coor
     }
 
     bool saoIguais = pontosIguais(coord, no->ponto.coordenadas);
+    this->num_comparacoes++;
     if(saoIguais){
         return no;
     }
@@ -222,6 +229,7 @@ KdTree::No* KdTree::criarNo(const std::vector<double>& coordenadas, int profundi
 
     int eixo = definirEixo(profundidade);
     No *no = new No(eixo, ponto);
+    this->consumo_memoria += sizeof(No) + no->ponto.coordenadas.capacity() * sizeof(double);
     return no;
 }
 
@@ -286,6 +294,7 @@ bool KdTree::pontosIguais(const std::vector<double>& ponto1, const std::vector<d
 
     const double eps = 1e-6;
     for(size_t i=0;i<ponto1.size();i++){
+        this->num_comparacoes++;
         if(std::fabs(ponto1[i] - ponto2[i]) >= eps){
             return false;
         }
@@ -300,6 +309,7 @@ KdTree::No* KdTree::buscarMinimo(No* no, int dimensaoAlvo, int profundidadeAtual
     }
 
     int eixoAtual = definirEixo(profundidadeAtual);
+    this->num_comparacoes++;
     if(eixoAtual == dimensaoAlvo){
         if(no->esquerda == nullptr){
             return no;
@@ -311,10 +321,12 @@ KdTree::No* KdTree::buscarMinimo(No* no, int dimensaoAlvo, int profundidadeAtual
     No *menorSubDir = buscarMinimo(no->direita, dimensaoAlvo, profundidadeAtual + 1);
     No* minNo = no;
 
+    this->num_comparacoes++;
     if (menorSubEsq != nullptr && menorSubEsq->ponto.coordenadas[dimensaoAlvo] < minNo->ponto.coordenadas[dimensaoAlvo]) {
         minNo = menorSubEsq;
     }
 
+    this->num_comparacoes++;
     if (menorSubDir != nullptr && menorSubDir->ponto.coordenadas[dimensaoAlvo] < minNo->ponto.coordenadas[dimensaoAlvo]) {
         minNo = menorSubDir;
     }
@@ -367,11 +379,11 @@ void KdTree::inserirElemento(const std::vector<double>& ponto){
     this->ultima_operacao_sucesso = false;
     this->raiz = inserirRecursivamente(this->raiz, ponto, 0);
 
-    if(this->ultima_operacao_sucesso){
+    /*if(this->ultima_operacao_sucesso){
         cout << "Elemento inserido na árvore Kd Tree com sucesso" << endl;
     } else {
         cout << "Esse elemento já existe na árvore Kd Tree" << endl;
-    }
+    }*/
 }
 
 bool KdTree::buscarElemento(const std::vector<double>& ponto){
@@ -485,4 +497,67 @@ void KdTree::gerarDOT(const std::string& caminho){
 
     arquivo << "}\n";
     arquivo.close();
+}
+
+// Função para aplicação
+void KdTree::buscarKVizinhosProximosRecursivo(No* no, const std::vector<double>& alvo, int k, int profundidade, std::priority_queue<std::pair<double, std::vector<double>>>& maxHeap){
+    if (no == nullptr) {
+        return;
+    }
+
+    double dist = calcularDistancia(no->ponto.coordenadas, alvo);
+
+    if (static_cast<int>(maxHeap.size()) < k) {
+        maxHeap.push({dist, no->ponto.coordenadas});
+    } else if (dist < maxHeap.top().first) {
+        maxHeap.pop();
+        maxHeap.push({dist, no->ponto.coordenadas});
+    }
+
+    int eixoAtual = definirEixo(profundidade);
+    double distanciaPlano = alvo[eixoAtual] - no->ponto.coordenadas[eixoAtual];
+
+    No* proxima = nullptr;
+    if(distanciaPlano < 0){
+       proxima = no->esquerda;
+    } else {
+        proxima = no->direita;
+    }
+
+    No* outra = nullptr;
+    if(distanciaPlano < 0){
+       outra = no->direita;
+    } else {
+        outra = no->esquerda;
+    }
+    
+
+    buscarKVizinhosProximosRecursivo(proxima, alvo, k, profundidade + 1, maxHeap);
+
+    if (static_cast<int>(maxHeap.size()) < k || std::fabs(distanciaPlano) < maxHeap.top().first) {
+        buscarKVizinhosProximosRecursivo(outra, alvo, k, profundidade + 1, maxHeap);
+    }
+}
+
+std::vector<std::vector<double>> KdTree::buscarKVizinhosProximos(const std::vector<double>& alvo, int k) {
+    if (this->raiz == nullptr || alvo.size() != static_cast<size_t>(this->k) || k < 1) {
+        this->ultima_operacao_sucesso = false;
+        return {};
+    }
+
+    // <distância, coordenadas>
+    std::priority_queue<std::pair<double, std::vector<double>>> maxHeap;
+
+    buscarKVizinhosProximosRecursivo(this->raiz, alvo, k, 0, maxHeap);
+
+    this->ultima_operacao_sucesso = !maxHeap.empty();
+
+    std::vector<std::vector<double>> vizinhos;
+    while (!maxHeap.empty()) {
+        vizinhos.push_back(maxHeap.top().second);
+        maxHeap.pop();
+    }
+
+    std::reverse(vizinhos.begin(), vizinhos.end());
+    return vizinhos;
 }
