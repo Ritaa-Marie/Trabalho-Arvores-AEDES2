@@ -389,11 +389,11 @@ void Patricia::inserirElemento(const std::string& palavra){
     this->ultima_operacao_sucesso = false;
     raiz = inserirRecursivamente(raiz, palavraTratada, 0);
     
-    if(this->ultima_operacao_sucesso){
+    /*if(this->ultima_operacao_sucesso){
         cout << "Elemento inserido na árvore Patricia com sucesso" << endl;
     } else {
         cout << "Esse elemento já existe na árvore Patricia" << endl;
-    }
+    }*/
 }
 
 bool Patricia::buscarElemento(const std::string& palavra){
@@ -462,4 +462,35 @@ void Patricia::gerarDOT(const std::string& caminho){
 
     arquivo << "}\n";
     arquivo.close();
+}
+
+// Função para aplicação
+std::string Patricia::buscarPrefixoMaisLongo(const std::string& ipDestino) {
+    std::string ipTratado = normalizarPalavra(ipDestino);
+    
+    if (ipTratado.empty() || this->raiz == nullptr) {
+        return "Nenhum prefixo correspondente";
+    }
+
+    std::string melhorResultado = "";
+    
+    No* noBusca = buscarRecursivamente(this->raiz, ipTratado, 0);
+
+    if (noBusca != nullptr) {
+        return ipDestino; 
+    }
+
+    std::string prefixoAcumulado = "";
+    for (char c : ipTratado) {
+        prefixoAcumulado += c;
+        if (this->buscarElemento(prefixoAcumulado)) {
+            melhorResultado = prefixoAcumulado;
+        }
+    }
+
+    if (melhorResultado.empty()) {
+        return "(Default Route)";
+    }
+
+    return melhorResultado;
 }

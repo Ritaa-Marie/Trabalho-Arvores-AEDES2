@@ -1,0 +1,12 @@
+=================================================
+  APLICAÇÃO: Patricia Tree (Roteamento IP)
+=================================================
+
+-> IP/Prefixo Destino: algoritmobuscabase => Rota: (Default Route)
+-> IP/Prefixo Destino: algoritmobuscabaseba => Rota: algoritmobuscabaseba
+-> IP/Prefixo Destino: algoritmoinvalidoxyz => Rota: (Default Route)
+
+-> Tempo total para 3 consultas: 482 us (0.482000 ms)
+-> Total de Comparações: 0
+=================================================
+

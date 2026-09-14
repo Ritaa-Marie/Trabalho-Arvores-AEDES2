@@ -75,6 +75,7 @@ class Patricia{
         void exibirPatriciaInOrdem();
         int alturaPatricia();
         void gerarDOT(const std::string& caminho);
+        std::string buscarPrefixoMaisLongo(const std::string& ipDestino);
 };
 
 #endif
