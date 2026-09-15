@@ -1,0 +1,13 @@
+digraph Splay {
+   node [shape=circle];
+  "null_l_-8" [style=invis];
+  "-8" -> "null_l_-8" [style=invis];
+  "-8" -> "6";
+  "6" -> "5";
+  "6" -> "56";
+  "56" -> "10";
+  "10" -> "8";
+  "10" -> "16";
+  "null_r_56" [style=invis];
+  "56" -> "null_r_56" [style=invis];
+}

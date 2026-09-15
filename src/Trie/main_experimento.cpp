@@ -5,46 +5,36 @@ using namespace std;
 int main() {
     Trie trie;
 
+    // estado 1: inserções
     trie.inserirElemento("casa");
     trie.inserirElemento("casaco");
     trie.inserirElemento("carro");
-    trie.inserirElemento("café");      
-    trie.inserirElemento("R$100");      
-    trie.inserirElemento("casa");
+    trie.inserirElemento("café");         
+    trie.inserirElemento("castelo");
     trie.inserirElemento("casulo");
     trie.inserirElemento("carroça");
     trie.inserirElemento("cão");
+    trie.inserirElemento("coracão");
     trie.inserirElemento("Ação");
-    trie.inserirElemento("casa");       
-
-    trie.exibirTrieInOrdem();
+    trie.inserirElemento("computacao"); 
+    trie.inserirElemento("copo");  
+    trie.gerarDOT("data/output/dot/trie1.dot");   
     
-    string busca1 = "carro";
-    string busca2 = "caminhão";
-
-    cout << "Buscando '" << busca1 << "': " << (trie.buscarElemento(busca1) ? "Encontrado" : "Não encontrado") << endl;
-    cout << "Buscando '" << busca2 << "': " << (trie.buscarElemento(busca2) ? "Encontrado" : "Não encontrado") << endl;
-
-    cout << "\naltura: " << trie.alturaTrie() << endl;
+    // estado 2 : busca
+    trie.inserirElemento("computador");
+    trie.gerarDOT("data/output/dot/trie2.dot");
     
-    trie.deletarElemento("casa");   
-    trie.deletarElemento("teste");  
-    
-    cout << "casa: " << trie.buscarElemento("casa") << endl;
-    cout << "CASA: " << trie.buscarElemento("CASA") << endl;
-    cout << "cas: " << trie.buscarElemento("cas") << endl;
-    cout << "cao: " << trie.buscarElemento("cao") << endl;
-    cout << "acao: " << trie.buscarElemento("acao") << endl;
-    cout << "inexistente: " << trie.buscarElemento("banana") << endl;
+    // estado 3: remoção
+    trie.deletarElemento("casa");
+    trie.gerarDOT("data/output/dot/trie3.dot");
 
-    cout << "\napos remocao:" << endl;
-    trie.exibirTrieInOrdem();
-    
-     cout << "casa existe: " << trie.buscarElemento("casa") << endl;
-     cout << "casulo existe: " << trie.buscarElemento("casulo") << endl;
-     cout << "casaco ainda existe: " << trie.buscarElemento("casaco") << endl;
+    long long numComp = trie.getNumComparacoes();
+    cout << "Número de comparações: " << numComp << endl;
 
-     trie.gerarDOT("data/output/img/dot/trie1.dot");
+    long long mem = trie.getConsumoMemoria();
+    cout << "Memória: " << mem << endl;
+
+    cout << "\nAltura: " << trie.alturaTrie() << endl;
 
     return 0;
 }

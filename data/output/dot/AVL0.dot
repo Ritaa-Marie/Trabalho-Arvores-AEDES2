@@ -1,0 +1,8 @@
+digraph AVL {
+   node [shape=circle];
+  10 [label="10\nFB:-1"];
+  10 -> 5;
+  5 [label="5\nFB:0"];
+  null_r_10[style=invis];
+   10 ->  null_r_10[style=invis];
+}

@@ -8,34 +8,33 @@ int main(){
 
     BST arvore;
     
+    // estado 1: inserção
     arvore.inserirElemento(10);
-    //arvore.gerarDOT("data/output/img/dot/arvore1.dot");
     arvore.inserirElemento(5);
-    //arvore.gerarDOT("data/output/img/dot/arvore2.dot");
     arvore.inserirElemento(8);
-    //arvore.gerarDOT("data/output/img/dot/arvore3.dot");
     arvore.inserirElemento(16);
     arvore.inserirElemento(-8);
     arvore.inserirElemento(56);
-    arvore.inserirElemento(10);
     arvore.inserirElemento(6);
-    //arvore.gerarDOT("data/output/img/dot/arvore4.dot");
-    arvore.exibirBSTInOrdem();
-    arvore.deletarElemento(45);
-    arvore.exibirBSTInOrdem();
-    //arvore.gerarDOT("data/output/img/dot/arvore5.dot");
-    arvore.deletarElemento(5);
-    arvore.gerarDOT("data/output/img/dot/arvoreBST.dot");
-    arvore.exibirBSTInOrdem();
+    arvore.gerarDOT("data/output/dot/BST1.dot");
 
-    int numComp = arvore.getNumComparacoes();
+    // estado 1: inserção
+    arvore.inserirElemento(60);
+    arvore.gerarDOT("data/output/dot/BST2.dot");
+
+    //estado 3: remoção
+    arvore.deletarElemento(5);
+    arvore.gerarDOT("data/output/dot/BST3.dot");
+
+
+    long long numComp = arvore.getNumComparacoes();
     cout << "Número de comparações: " << numComp << endl;
 
-    bool num5 = arvore.buscarElemento(5);
-    cout << "Número 5 está na árvore: " << num5 << endl;
+    long long mem = arvore.getConsumoMemoria();
+    cout << "Memória: " << mem << endl;
 
-    bool num10 = arvore.buscarElemento(10);
-    cout << "Número 10 está na árvore: " << num10 << endl;
+    int h = arvore.calcularAlturaBST();
+    cout << "Altura da árvore: " << h << endl;
 
     return 0;
 }

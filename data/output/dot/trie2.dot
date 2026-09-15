@@ -70,6 +70,12 @@ digraph Trie {
     "0x5fc26b031690" [label="", shape=circle];
     "0x5fc26b031690" -> "0x5fc26b031770" [label="o"];
     "0x5fc26b031770" [label="", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "0x5fc26b0314d0" -> "0x5fc26b031c20" [label="d"];
+    "0x5fc26b031c20" [label="", shape=circle];
+    "0x5fc26b031c20" -> "0x5fc26b031d00" [label="o"];
+    "0x5fc26b031d00" [label="", shape=circle];
+    "0x5fc26b031d00" -> "0x5fc26b031de0" [label="r"];
+    "0x5fc26b031de0" [label="", shape=doublecircle, style=filled, fillcolor=lightblue];
     "0x5fc26b030890" -> "0x5fc26b031850" [label="p"];
     "0x5fc26b031850" [label="", shape=circle];
     "0x5fc26b031850" -> "0x5fc26b031930" [label="o"];

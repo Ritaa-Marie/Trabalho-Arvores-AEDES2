@@ -12,15 +12,18 @@ Splay::No* Splay::inserirRecursivamente(No *no, int elemento, No* &noInserido){
     if(no == nullptr){
         No *novo = new No(elemento);
         this->ultima_operacao_sucesso = true;
+        this->consumo_memoria += sizeof(No);
         noInserido = novo;
         return novo;
     }
 
+    this->num_comparacoes++;
     if(elemento < no->dado){
         No *noEsquerda = inserirRecursivamente(no->esquerda, elemento, noInserido);
         no->esquerda = noEsquerda;
         noEsquerda->pai = no;
     } else if(elemento > no->dado){
+        this->num_comparacoes++;
         No *noDireita = inserirRecursivamente(no->direita, elemento, noInserido);
         no->direita = noDireita;
         noDireita->pai = no;
@@ -41,18 +44,21 @@ Splay::No* Splay::deletar(No *no, int elemento){
 
     splay(alvo);
 
+    this->num_comparacoes++;
     if(this->raiz == nullptr || this->raiz->dado != elemento){
         this->ultima_operacao_sucesso = false;
         return this->raiz;
     } 
 
     No *noDeletar = this->raiz;
+    this->num_comparacoes++;
     if(this->raiz->direita == nullptr){
         this->raiz = this->raiz->esquerda;
         if(raiz != nullptr){
             this->raiz->pai = nullptr;
         }
     } else if(this->raiz->esquerda == nullptr){
+        this->num_comparacoes++;
         this->raiz = this->raiz->direita;
         if(raiz != nullptr){
             this->raiz->pai = nullptr;
@@ -66,6 +72,7 @@ Splay::No* Splay::deletar(No *no, int elemento){
         this->raiz = subArvoreEsquerda;
         No *predecessor = buscarPredecessor(subArvoreEsquerda);
 
+        this->num_comparacoes++;
         if(predecessor != nullptr){
             splay(predecessor);
             this->raiz->direita = subArvoreDireita;
@@ -75,6 +82,7 @@ Splay::No* Splay::deletar(No *no, int elemento){
         }
     }
 
+    this->consumo_memoria -= sizeof(No);
     delete noDeletar;
     this->ultima_operacao_sucesso = true;
     return this->raiz;
@@ -88,6 +96,7 @@ Splay::No* Splay::buscarRecursivamente(No *no, int elemento){
 
     this->num_comparacoes++;
     if(no->dado > elemento){
+        this->num_comparacoes++;
         if(no->esquerda == nullptr){
             return no;
         }
@@ -95,6 +104,7 @@ Splay::No* Splay::buscarRecursivamente(No *no, int elemento){
     } else if(no->dado < elemento){
         this->num_comparacoes++;
         if(no->direita == nullptr){
+            this->num_comparacoes++;
             return no;
         }
         return buscarRecursivamente(no->direita, elemento);
@@ -194,6 +204,7 @@ Splay::No* Splay::buscarPredecessor(No *no){
         return nullptr;
     }
 
+    this->num_comparacoes++;
     if(no->direita == nullptr){
         return no;
     }
@@ -243,19 +254,19 @@ void Splay::gerarDOTRecursivo(No *no, std::ofstream& arquivo){
 
     if(no->esquerda != nullptr || no->direita != nullptr){
         if(no->esquerda != nullptr){
-            arquivo << "  " << no->dado << " -> " << no->esquerda->dado << ";\n";
+            arquivo << "  \"" << no->dado << "\" -> \"" << no->esquerda->dado << "\";\n";
             gerarDOTRecursivo(no->esquerda, arquivo);
         } else {
-            arquivo << "  null_l_" << no->dado << "[style=invis];\n";
-            arquivo << "   " << no->dado << " ->  null_l_" << no->dado << "[style=invis];\n";
+            arquivo << "  \"null_l_" << no->dado << "\" [style=invis];\n";
+            arquivo << "  \"" << no->dado << "\" -> \"null_l_" << no->dado << "\" [style=invis];\n";
         }
 
         if(no->direita != nullptr){
-            arquivo << "  " << no->dado << " -> " << no->direita->dado << ";\n";
+            arquivo << "  \"" << no->dado << "\" -> \"" << no->direita->dado << "\";\n";
             gerarDOTRecursivo(no->direita, arquivo);
         } else {
-            arquivo << "  null_r_" << no->dado << "[style=invis];\n";
-            arquivo << "   " << no->dado << " ->  null_r_" << no->dado << "[style=invis];\n";
+            arquivo << "  \"null_r_" << no->dado << "\" [style=invis];\n";
+            arquivo << "  \"" << no->dado << "\" -> \"null_r_" << no->dado << "\" [style=invis];\n";
         }
     }
 }
@@ -363,11 +374,11 @@ void Splay::deletarElemento(int elemento){
     
     this->raiz = deletar(this->raiz, elemento);
     
-    if(ultima_operacao_sucesso){
+    /*if(ultima_operacao_sucesso){
         cout << "Elemento deletado da Splay com sucesso" <<endl;
     } else {
         cout << "Erro ao deletar elemento da Splay" <<endl;
-    }
+    }*/
 }
 
 void Splay::exibirSplayInOrdem(){

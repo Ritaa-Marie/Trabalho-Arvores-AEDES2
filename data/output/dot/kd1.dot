@@ -1,0 +1,34 @@
+digraph KdTree {
+    node [fontname="Helvetica", shape=ellipse, style=filled, fillcolor=lightgray];
+    edge [fontname="Helvetica"];
+
+    "0x568820bb7f10" [label="(3.000000, 6.000000)\nEixo: 0"];
+    "0x568820bb7f10" -> "0x568820bb80f0" [label="L"];
+    "0x568820bb80f0" [label="(2.000000, 7.000000)\nEixo: 1"];
+    nullL0x568820bb80f0 [shape=point];
+    "0x568820bb80f0" -> nullL0x568820bb80f0;
+    nullR0x568820bb80f0 [shape=point];
+    "0x568820bb80f0" -> nullR0x568820bb80f0;
+    "0x568820bb7f10" -> "0x568820bb7f70" [label="R"];
+    "0x568820bb7f70" [label="(17.000000, 15.000000)\nEixo: 1"];
+    "0x568820bb7f70" -> "0x568820bb8030" [label="L"];
+    "0x568820bb8030" [label="(6.000000, 12.000000)\nEixo: 0"];
+    nullL0x568820bb8030 [shape=point];
+    "0x568820bb8030" -> nullL0x568820bb8030;
+    "0x568820bb8030" -> "0x568820bb8090" [label="R"];
+    "0x568820bb8090" [label="(9.000000, 1.000000)\nEixo: 1"];
+    nullL0x568820bb8090 [shape=point];
+    "0x568820bb8090" -> nullL0x568820bb8090;
+    nullR0x568820bb8090 [shape=point];
+    "0x568820bb8090" -> nullR0x568820bb8090;
+    "0x568820bb7f70" -> "0x568820bb7fd0" [label="R"];
+    "0x568820bb7fd0" [label="(13.000000, 15.000000)\nEixo: 0"];
+    "0x568820bb7fd0" -> "0x568820bb8150" [label="L"];
+    "0x568820bb8150" [label="(10.000000, 19.000000)\nEixo: 1"];
+    nullL0x568820bb8150 [shape=point];
+    "0x568820bb8150" -> nullL0x568820bb8150;
+    nullR0x568820bb8150 [shape=point];
+    "0x568820bb8150" -> nullR0x568820bb8150;
+    nullR0x568820bb7fd0 [shape=point];
+    "0x568820bb7fd0" -> nullR0x568820bb7fd0;
+}

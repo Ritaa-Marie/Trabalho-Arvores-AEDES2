@@ -46,6 +46,7 @@ BST::No* BST::inserirRecursivamente(No *no, int elemento){
     if(no == nullptr){
         No *noNovo = new No(elemento);
         this->ultima_operacao_sucesso = true;
+        this->consumo_memoria += sizeof(No);
         return noNovo;
     }
  
@@ -68,6 +69,7 @@ BST::No* BST::buscarSucessor(No *no){
         return nullptr;
     }
 
+    this->num_comparacoes++;
     if(no->esquerda == nullptr){
         return no;
     } else {
@@ -89,15 +91,21 @@ BST::No* BST::deletarRecursivamente(No *no, int elemento){
         no->direita = deletarRecursivamente(no->direita, elemento);
     } else {
         this->ultima_operacao_sucesso = true;
+        this->num_comparacoes++;
         if(no->esquerda == nullptr && no->direita == nullptr){
+            this->consumo_memoria -= sizeof(No);
             delete no;
             return nullptr;
         } else if(no->esquerda != nullptr && no->direita == nullptr){
+            this->num_comparacoes++;
             No *novo = no->esquerda;
+            this->consumo_memoria -= sizeof(No);
             delete no;
             return novo;
         } else if(no->direita != nullptr && no->esquerda == nullptr){
+            this->num_comparacoes++;
             No *novo = no->direita;
+            this->consumo_memoria -= sizeof(No);
             delete no;
             return novo;
         } else {
@@ -186,20 +194,20 @@ void BST::gerarDOTRecursivo(No *no, std::ofstream& arquivo){
 
 void BST::inserirElemento(int elemento){
     this->raiz = inserirRecursivamente(this->raiz, elemento);
-    if(this->ultima_operacao_sucesso){
+    /*if(this->ultima_operacao_sucesso){
         cout << "Elemento inserido na BST com sucesso" <<endl;
     } else {
         cout << "Esse elemento já existe na árvore BST" <<endl;
-    }
+    }*/
 }
 
 void BST::deletarElemento(int elemento){
     this->raiz = deletarRecursivamente(this->raiz, elemento);
-    if(this->ultima_operacao_sucesso){
+    /*if(this->ultima_operacao_sucesso){
         cout << "Elemento deletado da BST com sucesso" <<endl;
     } else {
         cout << "Erro ao deletar elemento da BST" <<endl;
-    }
+    }*/
 }
 
 bool BST::buscarElemento(int elemento){
@@ -246,3 +254,4 @@ void BST::gerarDOT(const std::string& caminho){
     arquivo << "}\n";
     arquivo.close();
 }
+

@@ -25,12 +25,14 @@ Treap::No* Treap::inserirRecursivamente(No *no, int elemento){
     this->num_comparacoes++;
     if(elemento < no->dado){
         no->esquerda = inserirRecursivamente(no->esquerda, elemento);
+        this->num_comparacoes++;
         if(no->esquerda != nullptr && no->esquerda->prioridade > no->prioridade){
             return rotacaoDireita(no);
         }
     } else if(elemento > no->dado){
         this->num_comparacoes++;
         no->direita = inserirRecursivamente(no->direita, elemento);
+        this->num_comparacoes++;
         if(no->direita != nullptr && no->direita->prioridade > no->prioridade){
             return rotacaoEsquerda(no);
         }
@@ -55,15 +57,18 @@ Treap::No* Treap::deletarRecursivamente(No *no, int elemento){
         no->direita = deletarRecursivamente(no->direita, elemento);
     } else {
         this->ultima_operacao_sucesso = true;
+        this->num_comparacoes++;
         if(no->direita == nullptr && no->esquerda == nullptr){
             delete no;
             this->consumo_memoria -= sizeof(No);
             return nullptr;
         } else if(no->esquerda == nullptr) {
+            this->num_comparacoes++;
             No *novaRaiz = rotacaoEsquerda(no);
             novaRaiz->esquerda = deletarRecursivamente(novaRaiz->esquerda, elemento);
             return novaRaiz;
         } else if(no->direita == nullptr){
+            this->num_comparacoes++;
             No *novaRaiz =  rotacaoDireita(no);
             novaRaiz->direita = deletarRecursivamente(novaRaiz->direita, elemento);
             return novaRaiz;
@@ -167,19 +172,19 @@ void Treap::gerarDOTRecursivo(No *no, std::ofstream& arquivo){
 
     if(no->esquerda != nullptr || no->direita != nullptr){
         if(no->esquerda != nullptr){
-            arquivo << "  " << no->dado << " -> " << no->esquerda->dado << ";\n";
+            arquivo << "  \"" << no->dado << "\" -> \"" << no->esquerda->dado << "\";\n";
             gerarDOTRecursivo(no->esquerda, arquivo);
         } else {
-            arquivo << "  null_l_" << no->dado << "[style=invis];\n";
-            arquivo << "   " << no->dado << " ->  null_l_" << no->dado << "[style=invis];\n";
+            arquivo << "  \"null_l_" << no->dado << "\" [style=invis];\n";
+            arquivo << "  \"" << no->dado << "\" -> \"null_l_" << no->dado << "\" [style=invis];\n";
         }
 
         if(no->direita != nullptr){
-            arquivo << "  " << no->dado << " -> " << no->direita->dado << ";\n";
+            arquivo << "  \"" << no->dado << "\" -> \"" << no->direita->dado << "\";\n";
             gerarDOTRecursivo(no->direita, arquivo);
         } else {
-            arquivo << "  null_r_" << no->dado << "[style=invis];\n";
-            arquivo << "   " << no->dado << " ->  null_r_" << no->dado << "[style=invis];\n";
+            arquivo << "  \"null_r_" << no->dado << "\" [style=invis];\n";
+            arquivo << "  \"" << no->dado << "\" -> \"null_r_" << no->dado << "\" [style=invis];\n";
         }
     }
 }
@@ -248,11 +253,11 @@ bool Treap::buscarElemento(int elemento){
 void Treap::deletarElemento(int elemento){
     this->ultima_operacao_sucesso = false;
     this->raiz = deletarRecursivamente(this->raiz, elemento);
-    if(ultima_operacao_sucesso){
+    /*if(ultima_operacao_sucesso){
         cout << "Elemento deletado da Treap com sucesso" <<endl;
     } else {
         cout << "Erro ao deletar elemento da Treap" <<endl;
-    }
+    }*/
 }
 
 void Treap::exibirTreapInOrdem(){

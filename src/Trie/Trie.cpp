@@ -12,6 +12,7 @@ Trie::~Trie(){
 Trie::No* Trie::criarNo(){
     this->idNoAtual++;
     No *no = new No(this->idNoAtual);
+    this->consumo_memoria += sizeof(No);
     return no;
 }
 
@@ -65,7 +66,9 @@ Trie::No* Trie::inserirRecursivamente(No *no, const std::string& palavra, size_t
         no = criarNo();
     }
 
+    this->num_comparacoes++;
     if(palavra.length() == caractere){
+        this->num_comparacoes++;
         if(no->fim){
             this->ultima_operacao_sucesso = false;
         } else {
@@ -77,6 +80,7 @@ Trie::No* Trie::inserirRecursivamente(No *no, const std::string& palavra, size_t
     }
 
     int indiceLetra = palavra[caractere] - 'a';
+    this->num_comparacoes++;
     if(indiceLetra < 0  || indiceLetra >= ALFABETO){
         this->ultima_operacao_sucesso = false;
         return no;
@@ -93,7 +97,9 @@ Trie::No* Trie::deletarRecursivamente(No *no, const std::string& palavra, size_t
         return no;
     }
 
+    this->num_comparacoes++;
     if(palavra.length() == caractere){
+        this->num_comparacoes++;
         if(!no->fim){
             this->ultima_operacao_sucesso = false;
             return no;
@@ -103,15 +109,18 @@ Trie::No* Trie::deletarRecursivamente(No *no, const std::string& palavra, size_t
             
             bool temFilho = false;
             for(int i=0;i<ALFABETO;i++){
+                this->num_comparacoes++;
                 if(no->filhos[i] != nullptr){
                     temFilho = true;
                     break;
                 }
             }
 
+            this->num_comparacoes++;
             if(temFilho){
                 return no;
             } else {
+                this->consumo_memoria -= sizeof(No);
                 delete no;
                 return nullptr;
             }
@@ -119,6 +128,7 @@ Trie::No* Trie::deletarRecursivamente(No *no, const std::string& palavra, size_t
     }
 
     int indiceLetra = palavra[caractere] - 'a';
+    this->num_comparacoes++;
     if(indiceLetra < 0 || indiceLetra >= ALFABETO){
         this->ultima_operacao_sucesso = false;
         return no;
@@ -127,14 +137,17 @@ Trie::No* Trie::deletarRecursivamente(No *no, const std::string& palavra, size_t
     no->filhos[indiceLetra] = deletarRecursivamente(no->filhos[indiceLetra], palavra, caractere + 1);
 
     bool temFilho = false;
-    for (int i = 0; i < ALFABETO; i++) {
+    for(int i = 0; i < ALFABETO; i++){
+        this->num_comparacoes++;
         if (no->filhos[i] != nullptr) {
             temFilho = true;
             break;
         }
     }
 
-    if (!no->fim && !temFilho) {
+    this->num_comparacoes++;
+    if(!no->fim && !temFilho){
+        this->consumo_memoria -= sizeof(No);
         delete no;
         return nullptr;
     }
@@ -147,7 +160,9 @@ Trie::No* Trie::buscarRecursivamente(No *no, const std::string& palavra, size_t 
         return nullptr;
     }
 
+    this->num_comparacoes++;
     if(caractere == palavra.length()){
+        this->num_comparacoes++;
         if(no->fim == true){
             return no;
         }
@@ -155,6 +170,7 @@ Trie::No* Trie::buscarRecursivamente(No *no, const std::string& palavra, size_t 
     }
 
     int indiceLetra = palavra[caractere] - 'a';
+    this->num_comparacoes++;
     if(indiceLetra < 0 || indiceLetra >= ALFABETO){
         return nullptr;
     }
@@ -320,11 +336,11 @@ void Trie::deletarElemento(const std::string& palavra){
 
     this->ultima_operacao_sucesso = false;
     raiz = deletarRecursivamente(raiz, palavraTratada, 0);
-    if(ultima_operacao_sucesso){
+    /*if(ultima_operacao_sucesso){
         cout << "Elemento deletado da Trie com sucesso" <<endl;
     } else {
         cout << "Erro ao deletar elemento da Trie" <<endl;
-    }
+    }*/
 }
 
 void Trie::exibirTrieInOrdem(){

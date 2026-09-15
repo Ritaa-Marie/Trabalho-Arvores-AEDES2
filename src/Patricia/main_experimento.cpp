@@ -9,8 +9,8 @@ int main() {
     Patricia arvore;
 
     vector<string> palavras = {
-        "carro", "casa", "casamento", "castelo",
-        "copo", "computacao", "compilador", "aviao",
+         , "casamento", "",
+        , "", "compilador", "aviao",
         "Computação"
     };
 
@@ -18,6 +18,7 @@ int main() {
         arvore.inserirElemento(p);
     }
 
+    cout << "memória: " << arvore.getConsumoMemoria() << endl;
     arvore.exibirPatriciaInOrdem();
     cout << "Altura atual: " << arvore.alturaPatricia() << endl;
 
@@ -30,8 +31,11 @@ int main() {
     arvore.deletarElemento("casa");
     arvore.deletarElemento("carro");
     arvore.deletarElemento("inexistente");
+    cout << "memória: " << arvore.getConsumoMemoria() << endl;
     arvore.exibirPatriciaInOrdem();
     cout << "Nova altura: " << arvore.alturaPatricia() << endl;
+
+    cout << "memória: " << arvore.getConsumoMemoria() << endl;
     
     arvore.gerarDOT("data/output/img/dot/patricia.dot");
     

@@ -20,6 +20,7 @@ Patricia::No* Patricia::inserirRecursivamente(No *no, const std::string& palavra
         No *novo = criarNo();
         novo->prefixo = palavra.substr(caractere);
         novo->fim = true;
+        this->consumo_memoria += sizeof(No) + novo->prefixo.capacity();
         this->ultima_operacao_sucesso = true;
         return novo;
     }
@@ -29,15 +30,19 @@ Patricia::No* Patricia::inserirRecursivamente(No *no, const std::string& palavra
     size_t posicaoDiverge = tamPrefixo;
 
     for(size_t i=0;i<tamPrefixo;i++){
+        this->num_comparacoes++;
         if((caractere + i) >= tamPalavra || palavra[caractere + i] != no->prefixo[i]){
             posicaoDiverge = i;
             break;
         }
     }
 
+    this->num_comparacoes++;
     if(posicaoDiverge < tamPrefixo){
+        this->num_comparacoes++;
         if (caractere + posicaoDiverge < tamPalavra) {
             unsigned char charDivergente = palavra[caractere + posicaoDiverge];
+            this->num_comparacoes++;
             if (charDivergente < 'a' || charDivergente >= ('a' + ALFABETO)) {
                 this->ultima_operacao_sucesso = false;
                 return no; 
@@ -45,6 +50,7 @@ Patricia::No* Patricia::inserirRecursivamente(No *no, const std::string& palavra
         }
 
         No *novoPai = split(no, posicaoDiverge);
+        this->num_comparacoes++;
         if(caractere + posicaoDiverge == tamPalavra){
             novoPai->fim = true;
             this->ultima_operacao_sucesso = true;
@@ -52,7 +58,9 @@ Patricia::No* Patricia::inserirRecursivamente(No *no, const std::string& palavra
             No *novoFilho = criarNo();
             novoFilho->prefixo = palavra.substr(caractere + posicaoDiverge);
             novoFilho->fim = true;
+            this->consumo_memoria += sizeof(No) + no->prefixo.capacity();
             size_t indiceLetra = novoFilho->prefixo[0] - 'a';
+            this->num_comparacoes++;
             if (indiceLetra < ALFABETO) {
                 novoPai->filhos[indiceLetra] = novoFilho;
                 this->ultima_operacao_sucesso = true;
@@ -65,7 +73,9 @@ Patricia::No* Patricia::inserirRecursivamente(No *no, const std::string& palavra
     } 
     
     size_t proximoCaractere = caractere + tamPrefixo;
-    if (proximoCaractere == tamPalavra) {
+    this->num_comparacoes++;
+    if(proximoCaractere == tamPalavra){
+        this->num_comparacoes++;
         if (!no->fim) {
             no->fim = true;
             this->ultima_operacao_sucesso = true; 
@@ -76,6 +86,7 @@ Patricia::No* Patricia::inserirRecursivamente(No *no, const std::string& palavra
     } 
     
     size_t indiceLetra = palavra[proximoCaractere] - 'a';
+    this->num_comparacoes++;
     if (indiceLetra < ALFABETO){
         no->filhos[indiceLetra] = inserirRecursivamente(no->filhos[indiceLetra], palavra, proximoCaractere);
     } else {
@@ -96,6 +107,7 @@ Patricia::No* Patricia::deletarRecursivamente(No *no, const std::string& palavra
 
     bool prefixoBateu = true;
     for(size_t i=0;i<tamPrefixo;i++){
+        this->num_comparacoes++;
         if((caractere + i) >= tamPalavra || palavra[caractere + i] != no->prefixo[i]){
             this->ultima_operacao_sucesso = false;
             prefixoBateu = false;
@@ -105,7 +117,9 @@ Patricia::No* Patricia::deletarRecursivamente(No *no, const std::string& palavra
 
     size_t proximaLetra = caractere + tamPrefixo;
     
+    this->num_comparacoes++;
     if(prefixoBateu && tamPalavra == proximaLetra){
+        this->num_comparacoes++;
         if(no->fim == true){
             no->fim = false;
             this->ultima_operacao_sucesso = true;
@@ -123,6 +137,7 @@ Patricia::No* Patricia::deletarRecursivamente(No *no, const std::string& palavra
     int numFilhos = 0;
     //No *filhoUnico = nullptr;
     for(int i=0;i<ALFABETO;i++){
+        this->num_comparacoes++;
         if(no->filhos[i] == nullptr){
             numFilhos += 0;
         } else {
@@ -131,10 +146,13 @@ Patricia::No* Patricia::deletarRecursivamente(No *no, const std::string& palavra
         }
     }
 
+    this->num_comparacoes++;
     if(numFilhos == 0 && no->fim == false){
+        this->num_comparacoes++;
         if(no == raiz){
             raiz = nullptr;
         }
+        this->consumo_memoria -= sizeof(No) + no->prefixo.capacity();
         delete no;
         return nullptr;
     } else if(numFilhos == 1 && no->fim == false){
@@ -154,13 +172,16 @@ Patricia::No* Patricia::buscarRecursivamente(No *no, const std::string& palavra,
 
     bool prefixoBateu = true;
     for(size_t i=0;i<tamPrefixo;i++){
+        this->num_comparacoes++;
         if((caractere + i) >= tamPalavra || palavra[caractere + i] != no->prefixo[i]){
             prefixoBateu = false;
             return nullptr;
         }
     }
 
+    this->num_comparacoes++;
     if(prefixoBateu && palavra.length() == caractere + tamPrefixo){
+        this->num_comparacoes++;
         if(no->fim == true){
             return no;
         } else {
@@ -169,8 +190,10 @@ Patricia::No* Patricia::buscarRecursivamente(No *no, const std::string& palavra,
     }
 
     size_t proximoCaractere = caractere + tamPrefixo;
-    if (proximoCaractere < tamPalavra) {
+    this->num_comparacoes++;
+    if(proximoCaractere < tamPalavra){
         int indiceFilho = palavra[proximoCaractere] - 'a';
+        this->num_comparacoes++;
         if (indiceFilho >= 0 && indiceFilho < ALFABETO) {
             return buscarRecursivamente(no->filhos[indiceFilho], palavra, proximoCaractere);
         }
@@ -259,6 +282,7 @@ Patricia::No* Patricia::split(No *no, size_t posicaoDiverge){
     No *novoPai = criarNo();
 
     novoPai->prefixo = no->prefixo.substr(0, posicaoDiverge);
+    this->consumo_memoria += sizeof(No) + novoPai->prefixo.capacity();
     no->prefixo = no->prefixo.substr(posicaoDiverge);
 
     size_t indiceLetra = no->prefixo[0] - 'a';
@@ -294,6 +318,7 @@ Patricia::No* Patricia::merge(No *no){
         no->filhos[i] = filhoUnico->filhos[i];
     }
 
+    this->consumo_memoria -= sizeof(No) + filhoUnico->prefixo.capacity();
     delete filhoUnico;
     return no;
 }
