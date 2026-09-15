@@ -1,0 +1,37 @@
+digraph PatriciaTrie {
+    node [fontname="Arial"];
+    edge [fontname="Arial"];
+    "13" [label="raiz", shape=circle];
+    "13" -> "14" [label="acao"];
+    "14" [label="acao", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "13" -> "11" [label="c"];
+    "11" [label="c", shape=circle];
+    "11" -> "3" [label="a"];
+    "3" [label="a", shape=circle];
+    "3" -> "5" [label="fe"];
+    "5" [label="fe", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3" -> "10" [label="o"];
+    "10" [label="o", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3" -> "4" [label="rro"];
+    "4" [label="rro", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "4" -> "9" [label="ca"];
+    "9" [label="ca", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3" -> "6" [label="s"];
+    "6" [label="s", shape=circle];
+    "6" -> "1" [label="a"];
+    "1" [label="a", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "1" -> "2" [label="co"];
+    "2" [label="co", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "6" -> "7" [label="telo"];
+    "7" [label="telo", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "6" -> "8" [label="ulo"];
+    "8" [label="ulo", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "11" -> "15" [label="o"];
+    "15" [label="o", shape=circle];
+    "15" -> "16" [label="mputacao"];
+    "16" [label="mputacao", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "15" -> "17" [label="po"];
+    "17" [label="po", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "15" -> "12" [label="racao"];
+    "12" [label="racao", shape=doublecircle, style=filled, fillcolor=lightblue];
+}

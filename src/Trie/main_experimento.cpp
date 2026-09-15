@@ -20,12 +20,12 @@ int main() {
     trie.inserirElemento("copo");  
     trie.gerarDOT("data/output/dot/trie1.dot");   
     
-    // estado 2 : busca
+    // estado 2 : inserir
     trie.inserirElemento("computador");
     trie.gerarDOT("data/output/dot/trie2.dot");
     
     // estado 3: remoção
-    trie.deletarElemento("casa");
+    trie.deletarElemento("castelo");
     trie.gerarDOT("data/output/dot/trie3.dot");
 
     long long numComp = trie.getNumComparacoes();
