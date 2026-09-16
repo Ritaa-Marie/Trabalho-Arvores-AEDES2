@@ -1,4 +1,4 @@
-#include "Trie.hpp"
+#include "Trie/Trie.hpp"
 
 using namespace std;
 

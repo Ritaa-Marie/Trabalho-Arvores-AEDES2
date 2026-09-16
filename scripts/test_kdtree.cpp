@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
-#include "KdTree.hpp"
+#include "KdTree/KdTree.hpp"
 
 using namespace std;
 

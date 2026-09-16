@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <filesystem>
-#include "KdTree.hpp"
+#include "KdTree/KdTree.hpp"
 
 using namespace std;
 

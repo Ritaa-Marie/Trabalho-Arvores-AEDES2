@@ -441,11 +441,11 @@ void KdTree::deletarElemento(const std::vector<double>& ponto){
 
     this->ultima_operacao_sucesso = false;
     this->raiz = deletarRecursivamente(this->raiz, ponto, 0);
-    if(ultima_operacao_sucesso){
+    /*if(ultima_operacao_sucesso){
         cout << "Elemento deletado da Kd Tree com sucesso" <<endl;
     } else {
         cout << "Erro ao deletar elemento da Kd Tree" <<endl;
-    }
+    }*/
 }
 
 void KdTree::exibirKdTreeInOrdem(){

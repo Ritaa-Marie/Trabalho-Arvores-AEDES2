@@ -5,7 +5,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
-#include "Splay.hpp"
+#include "Splay/Splay.hpp"
 
 using namespace std;
 

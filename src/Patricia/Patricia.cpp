@@ -446,11 +446,11 @@ void Patricia::deletarElemento(const std::string& palavra){
 
     this->ultima_operacao_sucesso = false;
     raiz = deletarRecursivamente(raiz, palavraTratada, 0);
-    if(ultima_operacao_sucesso){
+    /*if(ultima_operacao_sucesso){
         cout << "Elemento deletado da Patricia com sucesso" <<endl;
     } else {
         cout << "Erro ao deletar elemento da Patricia" <<endl;
-    }
+    }*/
 }
 
 void Patricia::exibirPatriciaInOrdem(){

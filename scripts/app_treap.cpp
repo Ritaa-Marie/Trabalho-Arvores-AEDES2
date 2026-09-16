@@ -2,7 +2,7 @@
 #include <vector>
 #include <chrono>
 #include <filesystem>
-#include "Treap.hpp"
+#include "Treap/Treap.hpp"
 
 using namespace std;
 

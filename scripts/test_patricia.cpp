@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Patricia.hpp"
+#include "Patricia/Patricia.hpp"
 
 using namespace std;
 

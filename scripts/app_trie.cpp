@@ -4,7 +4,7 @@
 #include <string>
 #include <chrono>
 #include <filesystem>
-#include "Trie.hpp"
+#include "Trie/Trie.hpp"
 
 using namespace std;
 
