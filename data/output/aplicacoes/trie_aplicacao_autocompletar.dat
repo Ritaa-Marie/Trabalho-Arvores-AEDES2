@@ -1,3 +1,4 @@
+
 =================================================
   APLICAÇÃO: Trie Autocompletar
 =================================================
@@ -16,6 +17,6 @@ Buscando sugestões para o prefixo: 'algoritmo'...
    - algoritmobuscabasebah
    ... e mais 8987 palavras.
 
--> Tempo de execução da busca por prefixo: 7130 us (7.130000 ms)
+-> Tempo de execução da busca por prefixo: 2126 us (2.126000 ms)
 =================================================
 
