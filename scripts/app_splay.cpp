@@ -29,6 +29,7 @@ void testarSplayCache(Splay& splay, const std::vector<int>& dataset) {
         }
     };
 
+    logPrint("\n");
     logPrint("=================================================\n");
     logPrint("  APLICAÇÃO: Splay Tree como Cache de Memória\n");
     logPrint("=================================================\n");

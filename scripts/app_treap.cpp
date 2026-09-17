@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// Teste de Aplicação: Treap como Fila de Prioridade
 void testarTreapFilaPrioridade(Treap& treap, int numInsercoes) {
     filesystem::create_directories("data/output/aplicacoes");
     
@@ -23,6 +24,7 @@ void testarTreapFilaPrioridade(Treap& treap, int numInsercoes) {
         }
     };
 
+    logPrint("\n");
     logPrint("=================================================\n");
     logPrint("  APLICAÇÃO: Treap (Fila de Prioridade)\n");
     logPrint("=================================================\n\n");

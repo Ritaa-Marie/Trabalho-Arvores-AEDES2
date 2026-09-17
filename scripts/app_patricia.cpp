@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// Teste de Aplicação: Patricia Tree  como Roteamento IP
 void testarPatriciaLPM(Patricia& patricia, const vector<string>& ipsParaTestar) {
     filesystem::create_directories("data/output/aplicacoes");
     
@@ -21,6 +22,7 @@ void testarPatriciaLPM(Patricia& patricia, const vector<string>& ipsParaTestar) 
         }
     };
 
+    logPrint("\n");
     logPrint("=================================================\n");
     logPrint("  APLICAÇÃO: Patricia Tree (Roteamento IP)\n");
     logPrint("=================================================\n\n");

@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// Teste de Aplicação: Trie  como Autocompletar
 void testarTrieAutocompletar(Trie& trie, const string& prefixo) {
     filesystem::create_directories("data/output");
     
@@ -21,6 +22,7 @@ void testarTrieAutocompletar(Trie& trie, const string& prefixo) {
         }
     };
 
+    logPrint("\n");
     logPrint("=================================================\n");
     logPrint("  APLICAÇÃO: Trie Autocompletar\n");
     logPrint("=================================================\n");

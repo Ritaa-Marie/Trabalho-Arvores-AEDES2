@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// Teste de Aplicação: KdTree como Busca de K-Vizinhos Próximos
 void testarKdTreeAplicacao(KdTree& kdtree, const vector<double>& pontoAlvo, int k) {
     filesystem::create_directories("data/output/aplicacoes");
     
@@ -22,6 +23,7 @@ void testarKdTreeAplicacao(KdTree& kdtree, const vector<double>& pontoAlvo, int 
         }
     };
 
+    logPrint("\n");
     logPrint("=================================================\n");
     logPrint("  APLICAÇÃO: KD-Tree (Busca de K-Vizinhos Próximos)\n");
     logPrint("=================================================\n\n");

@@ -8,5 +8,6 @@ int main() {
     // executar todos os testes
     ExecutorTestes teste;
     teste.rodarBateriaCompleta();
+    
     return 0;
 }
