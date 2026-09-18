@@ -1,12 +1,16 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include <iomanip>
+#include <chrono>
 #include "KdTree/KdTree.hpp"
 
 using namespace std;
 
 int main() {
     KdTree arvore(2);
+
+    auto inicio = std::chrono::high_resolution_clock::now();
 
     // estado 1: inserções 
     arvore.inserirElemento({3, 6});   
@@ -26,14 +30,23 @@ int main() {
     arvore.deletarElemento({17, 15});
     arvore.gerarDOT("data/output/dot/kd3.dot");
     
+    auto fim = std::chrono::high_resolution_clock::now();
+    double duracao_ms = std::chrono::duration<double, std::milli>(fim - inicio).count();
+
     long long numComp = arvore.getNumComparacoes();
-    cout << "Número de comparações: " << numComp << endl;
-
     long long mem = arvore.getConsumoMemoria();
-    cout << "Memória: " << mem << endl;
+    int alt = arvore.alturaKdTree();
+    int n = 8;
 
-    int h = arvore.alturaKdTree();
-    cout << "Altura da árvore: " << h << endl;
+    std::cout << "\n============================================================\n";
+    std::cout << "        MÉTRICAS DO EXPERIMENTO INDIVIDUAL DA KDTREE        \n";
+    std::cout << "==============================================================\n";
+    std::cout << "  Tamanho da Entrada (N): " << std::setw(15) << n << "\n";
+    std::cout << "  Comparações de Chaves : " << std::setw(15) << numComp << "\n";
+    std::cout << "  Consumo de Memória    : " << std::setw(15) << mem << " bytes\n";
+    std::cout << "  Altura da Árvore      : " << std::setw(15) << alt << "\n";
+    std::cout << "  Tempo de Execução     : " << std::setw(12) << std::fixed << std::setprecision(3) << duracao_ms << " ms\n";
+    std::cout << "==================================================\n\n";
 
     return 0;
 }

@@ -1,9 +1,13 @@
 #include "Trie/Trie.hpp"
+#include <iomanip>
+#include <chrono>
 
 using namespace std;
 
 int main() {
     Trie trie;
+
+    auto inicio = std::chrono::high_resolution_clock::now();
 
     // estado 1: inserções
     trie.inserirElemento("casa");
@@ -28,13 +32,23 @@ int main() {
     trie.deletarElemento("castelo");
     trie.gerarDOT("data/output/dot/trie3.dot");
 
+    auto fim = std::chrono::high_resolution_clock::now();
+    double duracao_ms = std::chrono::duration<double, std::milli>(fim - inicio).count();
+
     long long numComp = trie.getNumComparacoes();
-    cout << "Número de comparações: " << numComp << endl;
-
     long long mem = trie.getConsumoMemoria();
-    cout << "Memória: " << mem << endl;
+    int alt = trie.alturaTrie();
+    int n = 13;
 
-    cout << "\nAltura: " << trie.alturaTrie() << endl;
+    std::cout << "\n============================================================\n";
+    std::cout << "        MÉTRICAS DO EXPERIMENTO INDIVIDUAL DA TRIE        \n";
+    std::cout << "==============================================================\n";
+    std::cout << "  Tamanho da Entrada (N): " << std::setw(15) << n << "\n";
+    std::cout << "  Comparações de Chaves : " << std::setw(15) << numComp << "\n";
+    std::cout << "  Consumo de Memória    : " << std::setw(15) << mem << " bytes\n";
+    std::cout << "  Altura da Árvore      : " << std::setw(15) << alt << "\n";
+    std::cout << "  Tempo de Execução     : " << std::setw(12) << std::fixed << std::setprecision(3) << duracao_ms << " ms\n";
+    std::cout << "==================================================\n\n";
 
     return 0;
 }
