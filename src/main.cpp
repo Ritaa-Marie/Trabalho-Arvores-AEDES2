@@ -5,7 +5,7 @@
 
 int main() {
 
-    // executar todos os testes
+    // executa todos os testes
     ExecutorTestes teste;
     teste.rodarBateriaCompleta();
     
