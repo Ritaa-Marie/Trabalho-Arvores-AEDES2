@@ -8,6 +8,10 @@ Splay::~Splay(){
     destruirSplay(this->raiz);
 }
 
+Splay::No* Splay::getRaiz() const { 
+    return raiz; 
+}
+
 Splay::No* Splay::inserirRecursivamente(No *no, int elemento, No* &noInserido){
     if(no == nullptr){
         No *novo = new No(elemento);

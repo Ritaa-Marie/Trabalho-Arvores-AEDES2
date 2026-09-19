@@ -21,6 +21,10 @@ KdTree::~KdTree(){
     this->raiz = nullptr;
 }
 
+KdTree::No* KdTree::getRaiz() const { 
+        return raiz; 
+}
+
 KdTree::No* KdTree::inserirRecursivamente(No* no, const std::vector<double>& coord, int profundidade){
     if(no == nullptr){
         No *novo = criarNo(coord, profundidade);

@@ -9,6 +9,10 @@ Patricia::~Patricia(){
     raiz = nullptr;
 }
 
+Patricia::No* Patricia::getRaiz() const { 
+    return raiz; 
+}
+
 Patricia::No* Patricia::criarNo(){
     this->idNoAtual++;
     No *novo = new No(this->idNoAtual);

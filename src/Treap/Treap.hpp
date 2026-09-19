@@ -38,7 +38,9 @@ class Treap{
         void gerarDOTRecursivo(No *no, std::ofstream& arquivo);
         int calcularAlturaRecursivamente(No *no);
 
+        friend class VisualizacaoArvore;
     public:
+        No* getRaiz() const;
         Treap();
         ~Treap();
 

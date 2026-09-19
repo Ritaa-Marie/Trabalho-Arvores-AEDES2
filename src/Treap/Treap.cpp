@@ -9,6 +9,10 @@ Treap::~Treap(){
     destruirTreap(this->raiz);
 }
 
+Treap::No* Treap::getRaiz() const { 
+    return raiz; 
+}
+
 uint64_t Treap::gerarPrioridade(){
     return this->distribuicaoInteiro(geradorBinario);
 }

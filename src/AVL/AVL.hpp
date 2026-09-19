@@ -38,7 +38,9 @@ class AVL {
         No* balanceamentoAVL(No *no);
         void gerarDOTRecursivo(No *no, std::ofstream& arquivo);
         
+        friend class VisualizacaoArvore;
     public:
+        No* getRaiz() const;
         long long getConsumoMemoria();
         long long getNumComparacoes();
         long long getTempoExecucao();

@@ -9,6 +9,10 @@ Trie::~Trie(){
     raiz = nullptr;
 }
 
+Trie::No* Trie::getRaiz() const { 
+        return raiz; 
+}
+
 Trie::No* Trie::criarNo(){
     this->idNoAtual++;
     No *no = new No(this->idNoAtual);

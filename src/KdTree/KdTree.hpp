@@ -49,7 +49,9 @@ class KdTree{
         No* buscarMinimo(No* no, int dimensaoAlvo, int profundidadeAtual);
         void buscarKVizinhosProximosRecursivo(No* no, const std::vector<double>& alvo, int k, int profundidade, std::priority_queue<std::pair<double, std::vector<double>>>& maxHeap);
 
+        friend class VisualizacaoArvore;
     public:
+        No* getRaiz() const;
         KdTree(int k = 2);
         ~KdTree();
 

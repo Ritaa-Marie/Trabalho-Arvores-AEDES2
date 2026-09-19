@@ -8,6 +8,10 @@ BST::~BST(){
     destruirBST(this->raiz);
 }
 
+BST::No* BST::getRaiz() const { 
+        return raiz; 
+}
+
 long long BST::getNumComparacoes(){
     return this->num_comparacoes;
 }

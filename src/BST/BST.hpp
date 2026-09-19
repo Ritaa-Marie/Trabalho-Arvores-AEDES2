@@ -32,7 +32,9 @@ class BST {
         int calcularAlturaRecursivo(No *no);
         void gerarDOTRecursivo(No *no, std::ofstream& arquivo);
 
+        friend class VisualizacaoArvore;
     public:
+        No* getRaiz() const;
         BST();
         ~BST();
 

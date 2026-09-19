@@ -37,7 +37,9 @@ class Splay{
         void gerarDOTRecursivo(No *no, std::ofstream& arquivo);
         int calcularAlturaRecursivamente(No *no);
 
-    public:
+        friend class VisualizacaoArvore;
+    public: 
+        No* getRaiz() const;
         Splay();
         ~Splay();
 

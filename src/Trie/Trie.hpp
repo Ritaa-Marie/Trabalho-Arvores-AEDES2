@@ -51,7 +51,9 @@ class Trie{
         Trie::No* buscarNoDoPrefixo(No* no, const std::string& prefixo, size_t caractere);
         void coletarPalavrasComPrefixo(No* no, std::string& palavraAtual, std::vector<std::string>& resultados);
 
+        friend class VisualizacaoArvore;
     public:
+        No* getRaiz() const;
         Trie();
         ~Trie();
 

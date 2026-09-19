@@ -8,6 +8,10 @@ AVL::~AVL(){
     destruirAVL(this->raiz);
 }
 
+AVL::No* AVL::getRaiz() const { 
+        return raiz; 
+}
+
 long long AVL::getConsumoMemoria(){
     return this->consumo_memoria;
 }

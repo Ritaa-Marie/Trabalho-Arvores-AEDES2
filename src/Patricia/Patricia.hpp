@@ -53,7 +53,9 @@ class Patricia{
         void substituirCaracteresEspeciais(std::string& palavra);
         std::string normalizarPalavra(const std::string& palavra);
 
+        friend class VisualizacaoArvore;
     public:
+        No* getRaiz() const;
         Patricia();
         ~Patricia();
 
