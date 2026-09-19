@@ -72,8 +72,8 @@ std::vector<std::vector<double>> GerenciadorArquivos::lerPontos(const std::strin
 }
 
 void GerenciadorArquivos::salvarResultadoCSV(const std::string& caminho, const Resultado& r) {
-    std::ifstream checaExiste(caminho);
-    bool existe = checaExiste.good();
+    std::ifstream checaExiste(caminho, std::ios::ate);
+    bool precisaCabecalho = !checaExiste.is_open() || checaExiste.tellg() == 0;
     checaExiste.close();
 
     std::ofstream arq(caminho, std::ios::app);
@@ -82,7 +82,7 @@ void GerenciadorArquivos::salvarResultadoCSV(const std::string& caminho, const R
         return;
     }
 
-    if (!existe) {
+    if (precisaCabecalho) {
         arq << "Dataset,Estrutura,Operacao,TamanhoN,TempoTotal_s,TempoMedio_ns,Rotacoes,Comparacoes,Memoria,Altura,Dimensao,Observacao\n";
     }
 

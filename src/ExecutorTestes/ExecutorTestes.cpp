@@ -9,7 +9,7 @@
 #include "KdTree/KdTree.hpp"
 #include <chrono>
 
-const std::string CAMINHO_CSV = "data/output/resultado_certo.csv";
+const std::string CAMINHO_CSV = "data/output/resultado_dados_comparativos.csv";
 const int NUM_RODADAS = 10;
 
 // ============================================================================
