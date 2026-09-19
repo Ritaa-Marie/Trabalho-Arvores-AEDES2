@@ -6,10 +6,10 @@ Dataset total: 100000 elementos.
 Tamanho dos 10% mais acessados: 10000 elementos.
 Simulando 10000 acessos com padrão 80/20...
 
--> Tempo total para 10.000 buscas: 6 ms
--> Tempo médio por busca: 0.000600 ms
--> Verificação de Cache: Elemento 138926 trazido para a Raiz com sucesso?
-   Valor na Raiz: 138926
+-> Tempo total para 10.000 buscas: 7 ms
+-> Tempo médio por busca: 0.000700 ms
+-> Verificação de Cache: Elemento 103712 trazido para a Raiz com sucesso?
+   Valor na Raiz: 103712
    [SUCESSO] O nó acessado subiu para a raiz via Splay.
 =================================================
 

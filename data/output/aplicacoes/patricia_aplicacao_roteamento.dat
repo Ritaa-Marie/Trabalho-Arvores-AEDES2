@@ -7,6 +7,6 @@
 -> IP/Prefixo Destino: algoritmobuscabaseba => Rota: algoritmobuscabaseba
 -> IP/Prefixo Destino: algoritmoinvalidoxyz => Rota: (Default Route)
 
--> Tempo total para 3 consultas: 156 us (0.156000 ms)
+-> Tempo total para 3 consultas: 224 us (0.224000 ms)
 =================================================
 

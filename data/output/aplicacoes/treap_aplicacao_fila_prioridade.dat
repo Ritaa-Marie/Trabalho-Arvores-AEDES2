@@ -4,10 +4,10 @@
 =================================================
 
 -> Elemento no Topo da Fila (Maior Prioridade):
-   - Chave/Tarefa: 85254
-   - Prioridade:   18446628256613537849
+   - Chave/Tarefa: 76043
+   - Prioridade:   18446444087494020846
 
 -> Total de tarefas na Treap: 100000
--> Tempo para consultar topo da fila: 0 us (0.000000 ms)
+-> Tempo para consultar topo da fila: 1 us (0.001000 ms)
 =================================================
 
