@@ -1,8 +1,0 @@
-digraph Splay {
-   node [shape=circle];
-  25 -> 8;
-  8 -> 5;
-  8 -> 10;
-  null_r_25[style=invis];
-   25 ->  null_r_25[style=invis];
-}
