@@ -1,0 +1,129 @@
+digraph RastreioArvore {
+  rankdir=TB;
+    graph [ordering="out"];
+  label="Rastreio de Execução da Árvore";
+  labelloc="t";
+  fontsize=16;
+  node [shape=circle, fontname="Helvetica", fontsize=10];
+
+  subgraph cluster_passo_1 {
+    label="Passo 1: Inserção das palavras: casa, casaco, carro, café, castelo, casulo, carroça, cão, coração, Ação, computacao, copo";
+    color="#cbd5e1"; style="rounded";
+    "13_p1" [label="raiz", shape=circle];
+    "13_p1" -> "14_p1" [label="acao"];
+    "14_p1" [label="acao", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "13_p1" -> "11_p1" [label="c"];
+    "11_p1" [label="c", shape=circle];
+    "11_p1" -> "3_p1" [label="a"];
+    "3_p1" [label="a", shape=circle];
+    "3_p1" -> "5_p1" [label="fe"];
+    "5_p1" [label="fe", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p1" -> "10_p1" [label="o"];
+    "10_p1" [label="o", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p1" -> "4_p1" [label="rro"];
+    "4_p1" [label="rro", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "4_p1" -> "9_p1" [label="ca"];
+    "9_p1" [label="ca", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p1" -> "6_p1" [label="s"];
+    "6_p1" [label="s", shape=circle];
+    "6_p1" -> "1_p1" [label="a"];
+    "1_p1" [label="a", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "1_p1" -> "2_p1" [label="co"];
+    "2_p1" [label="co", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "6_p1" -> "7_p1" [label="telo"];
+    "7_p1" [label="telo", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "6_p1" -> "8_p1" [label="ulo"];
+    "8_p1" [label="ulo", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "11_p1" -> "15_p1" [label="o"];
+    "15_p1" [label="o", shape=circle];
+    "15_p1" -> "16_p1" [label="mputacao"];
+    "16_p1" [label="mputacao", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "15_p1" -> "17_p1" [label="po"];
+    "17_p1" [label="po", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "15_p1" -> "12_p1" [label="racao"];
+    "12_p1" [label="racao", shape=doublecircle, style=filled, fillcolor=lightblue];
+  }
+
+  subgraph cluster_passo_2 {
+    label="Passo 2: Inserção da palavra 'computador'";
+    color="#cbd5e1"; style="rounded";
+    "13_p2" [label="raiz", shape=circle];
+    "13_p2" -> "14_p2" [label="acao"];
+    "14_p2" [label="acao", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "13_p2" -> "11_p2" [label="c"];
+    "11_p2" [label="c", shape=circle];
+    "11_p2" -> "3_p2" [label="a"];
+    "3_p2" [label="a", shape=circle];
+    "3_p2" -> "5_p2" [label="fe"];
+    "5_p2" [label="fe", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p2" -> "10_p2" [label="o"];
+    "10_p2" [label="o", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p2" -> "4_p2" [label="rro"];
+    "4_p2" [label="rro", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "4_p2" -> "9_p2" [label="ca"];
+    "9_p2" [label="ca", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p2" -> "6_p2" [label="s"];
+    "6_p2" [label="s", shape=circle];
+    "6_p2" -> "1_p2" [label="a"];
+    "1_p2" [label="a", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "1_p2" -> "2_p2" [label="co"];
+    "2_p2" [label="co", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "6_p2" -> "7_p2" [label="telo"];
+    "7_p2" [label="telo", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "6_p2" -> "8_p2" [label="ulo"];
+    "8_p2" [label="ulo", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "11_p2" -> "15_p2" [label="o"];
+    "15_p2" [label="o", shape=circle];
+    "15_p2" -> "18_p2" [label="mputa"];
+    "18_p2" [label="mputa", shape=circle];
+    "18_p2" -> "16_p2" [label="cao"];
+    "16_p2" [label="cao", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "18_p2" -> "19_p2" [label="dor"];
+    "19_p2" [label="dor", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "15_p2" -> "17_p2" [label="po"];
+    "17_p2" [label="po", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "15_p2" -> "12_p2" [label="racao"];
+    "12_p2" [label="racao", shape=doublecircle, style=filled, fillcolor=lightblue];
+  }
+
+  subgraph cluster_passo_3 {
+    label="Passo 3: Remoção da palavra 'castelo'";
+    color="#cbd5e1"; style="rounded";
+    "13_p3" [label="raiz", shape=circle];
+    "13_p3" -> "14_p3" [label="acao"];
+    "14_p3" [label="acao", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "13_p3" -> "11_p3" [label="c"];
+    "11_p3" [label="c", shape=circle];
+    "11_p3" -> "3_p3" [label="a"];
+    "3_p3" [label="a", shape=circle];
+    "3_p3" -> "5_p3" [label="fe"];
+    "5_p3" [label="fe", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p3" -> "10_p3" [label="o"];
+    "10_p3" [label="o", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p3" -> "4_p3" [label="rro"];
+    "4_p3" [label="rro", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "4_p3" -> "9_p3" [label="ca"];
+    "9_p3" [label="ca", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "3_p3" -> "6_p3" [label="s"];
+    "6_p3" [label="s", shape=circle];
+    "6_p3" -> "1_p3" [label="a"];
+    "1_p3" [label="a", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "1_p3" -> "2_p3" [label="co"];
+    "2_p3" [label="co", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "6_p3" -> "8_p3" [label="ulo"];
+    "8_p3" [label="ulo", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "11_p3" -> "15_p3" [label="o"];
+    "15_p3" [label="o", shape=circle];
+    "15_p3" -> "18_p3" [label="mputa"];
+    "18_p3" [label="mputa", shape=circle];
+    "18_p3" -> "16_p3" [label="cao"];
+    "16_p3" [label="cao", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "18_p3" -> "19_p3" [label="dor"];
+    "19_p3" [label="dor", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "15_p3" -> "17_p3" [label="po"];
+    "17_p3" [label="po", shape=doublecircle, style=filled, fillcolor=lightblue];
+    "15_p3" -> "12_p3" [label="racao"];
+    "12_p3" [label="racao", shape=doublecircle, style=filled, fillcolor=lightblue];
+  }
+
+}

@@ -1,11 +1,13 @@
 #include "Trie/Trie.hpp"
 #include <iomanip>
 #include <chrono>
+#include "VisualizacaoArvore/VisualizacaoArvore.hpp"
 
 using namespace std;
 
 int main() {
     Trie trie;
+    VisualizacaoArvore vis;
 
     auto inicio = std::chrono::high_resolution_clock::now();
 
@@ -23,14 +25,17 @@ int main() {
     trie.inserirElemento("computacao"); 
     trie.inserirElemento("copo");  
     trie.gerarDOT("data/output/dot/trie1.dot");   
+    vis.registrarPassoTrie(trie.getRaiz(), "Inserção das palavras: casa, casaco, carro, café, castelo, casulo, carroça, cão, coração, Ação, computacao, copo", nullptr,"#fde047");
     
     // estado 2 : inserir
     trie.inserirElemento("computador");
     trie.gerarDOT("data/output/dot/trie2.dot");
+    vis.registrarPassoTrie(trie.getRaiz(), "Inserção da palavra 'computador'", nullptr, "#fde047");
     
     // estado 3: remoção
     trie.deletarElemento("castelo");
     trie.gerarDOT("data/output/dot/trie3.dot");
+    vis.registrarPassoTrie(trie.getRaiz(), "Remoção da palavra 'castelo'", nullptr, "#fde047");
 
     auto fim = std::chrono::high_resolution_clock::now();
     double duracao_ms = std::chrono::duration<double, std::milli>(fim - inicio).count();
@@ -39,6 +44,9 @@ int main() {
     long long mem = trie.getConsumoMemoria();
     int alt = trie.alturaTrie();
     int n = 13;
+
+    vis.exportarEGerarImagem("data/output/dot/rastreio_trie.dot", "data/output/img/rastreio/rastreio_trie.png");
+    std::cout << "\nRastreio da Trie gerado em rastreio_trie.png com sucesso!\n" << std::endl;
 
     std::cout << "\n============================================================\n";
     std::cout << "        MÉTRICAS DO EXPERIMENTO INDIVIDUAL DA TRIE        \n";

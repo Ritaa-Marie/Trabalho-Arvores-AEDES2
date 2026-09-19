@@ -1,0 +1,71 @@
+digraph RastreioArvore {
+  rankdir=TB;
+    graph [ordering="out"];
+  label="Rastreio de Execução da Árvore";
+  labelloc="t";
+  fontsize=16;
+  node [shape=circle, fontname="Helvetica", fontsize=10];
+
+  subgraph cluster_passo_1 {
+    label="Passo 1: Inserção das chaves 10, 5,8, 16, -8, 56, 6 (último inserido vira raiz)";
+    color="#cbd5e1"; style="rounded";
+    "6_p1" [label="6", style=filled, fillcolor="#fde047", penwidth=2.0];
+    "6_p1" -> "-8_p1";
+    "-8_p1" [label="-8"];
+    "null_l_-8_p1" [style=invis];
+    "-8_p1" -> "null_l_-8_p1" [style=invis];
+    "-8_p1" -> "5_p1";
+    "5_p1" [label="5"];
+    "6_p1" -> "56_p1";
+    "56_p1" [label="56"];
+    "56_p1" -> "10_p1";
+    "10_p1" [label="10"];
+    "10_p1" -> "8_p1";
+    "8_p1" [label="8"];
+    "10_p1" -> "16_p1";
+    "16_p1" [label="16"];
+    "null_r_56_p1" [style=invis];
+    "56_p1" -> "null_r_56_p1" [style=invis];
+  }
+
+  subgraph cluster_passo_2 {
+    label="Passo 2: Busca pela chave -8 (Splay traz o -8 para a raiz)";
+    color="#cbd5e1"; style="rounded";
+    "-8_p2" [label="-8", style=filled, fillcolor="#a3e269", penwidth=2.0];
+    "null_l_-8_p2" [style=invis];
+    "-8_p2" -> "null_l_-8_p2" [style=invis];
+    "-8_p2" -> "6_p2";
+    "6_p2" [label="6"];
+    "6_p2" -> "5_p2";
+    "5_p2" [label="5"];
+    "6_p2" -> "56_p2";
+    "56_p2" [label="56"];
+    "56_p2" -> "10_p2";
+    "10_p2" [label="10"];
+    "10_p2" -> "8_p2";
+    "8_p2" [label="8"];
+    "10_p2" -> "16_p2";
+    "16_p2" [label="16"];
+    "null_r_56_p2" [style=invis];
+    "56_p2" -> "null_r_56_p2" [style=invis];
+  }
+
+  subgraph cluster_passo_3 {
+    label="Passo 3: Remoção do 16 (Splay do 16 para a raiz, divisão e fusão)";
+    color="#cbd5e1"; style="rounded";
+    "10_p3" [label="10", style=filled, fillcolor="#fde047", penwidth=2.0];
+    "10_p3" -> "6_p3";
+    "6_p3" [label="6"];
+    "6_p3" -> "-8_p3";
+    "-8_p3" [label="-8"];
+    "null_l_-8_p3" [style=invis];
+    "-8_p3" -> "null_l_-8_p3" [style=invis];
+    "-8_p3" -> "5_p3";
+    "5_p3" [label="5"];
+    "6_p3" -> "8_p3";
+    "8_p3" [label="8"];
+    "10_p3" -> "56_p3";
+    "56_p3" [label="56"];
+  }
+
+}

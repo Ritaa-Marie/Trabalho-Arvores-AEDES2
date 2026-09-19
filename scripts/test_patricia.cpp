@@ -4,11 +4,13 @@
 #include <iomanip>
 #include <chrono>
 #include "Patricia/Patricia.hpp"
+#include "VisualizacaoArvore/VisualizacaoArvore.hpp"
 
 using namespace std;
 
 int main() {
     Patricia arvore;
+    VisualizacaoArvore vis;
 
     auto inicio = std::chrono::high_resolution_clock::now();
 
@@ -26,14 +28,18 @@ int main() {
     arvore.inserirElemento("computacao"); 
     arvore.inserirElemento("copo");  
     arvore.gerarDOT("data/output/dot/pat1.dot");   
+    vis.registrarPassoPatricia(arvore.getRaiz(), "Inserção das palavras: casa, casaco, carro, café, castelo, casulo, carroça, cão, coração, Ação, computacao, copo", nullptr,"#fde047");
     
     // estado 2 : inserir
     arvore.inserirElemento("computador");
     arvore.gerarDOT("data/output/dot/pat2.dot");
+    vis.registrarPassoPatricia(arvore.getRaiz(), "Inserção da palavra 'computador'", nullptr, "#fde047");
     
     // estado 3: remoção
     arvore.deletarElemento("castelo");
     arvore.gerarDOT("data/output/dot/pat3.dot");
+    vis.registrarPassoPatricia(arvore.getRaiz(), "Remoção da palavra 'castelo'", nullptr, "#fde047");
+
 
     auto fim = std::chrono::high_resolution_clock::now();
     double duracao_ms = std::chrono::duration<double, std::milli>(fim - inicio).count();
@@ -42,6 +48,9 @@ int main() {
     long long mem = arvore.getConsumoMemoria();
     int alt = arvore.alturaPatricia();
     int n = 14;
+
+    vis.exportarEGerarImagem("data/output/dot/rastreio_pat.dot", "data/output/img/rastreio/rastreio_pat.png");
+    std::cout << "\nRastreio da Patrícia gerado em rastreio_pat.png com sucesso!\n" << std::endl;
 
     std::cout << "\n============================================================\n";
     std::cout << "        MÉTRICAS DO EXPERIMENTO INDIVIDUAL DA PATRÍCIA        \n";

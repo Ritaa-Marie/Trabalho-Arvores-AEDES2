@@ -1,0 +1,115 @@
+digraph RastreioArvore {
+  rankdir=TB;
+    graph [ordering="out"];
+  label="Rastreio de Execução da Árvore";
+  labelloc="t";
+  fontsize=16;
+  node [shape=circle, fontname="Helvetica", fontsize=10];
+
+  subgraph cluster_passo_1 {
+    label="Passo 1: Inserção dos pontos 2D (Alternância de eixos X/Y)";
+    color="#cbd5e1"; style="rounded";
+    "0x63d2759f61b0_p1" [label="(3.000000, 6.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    "0x63d2759f61b0_p1" -> "0x63d2759f6390_p1" [label="L"];
+    "0x63d2759f6390_p1" [label="(2.000000, 7.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6390_p1 [shape=point];
+    "0x63d2759f6390_p1" -> nullL0x63d2759f6390_p1;
+    nullR0x63d2759f6390_p1 [shape=point];
+    "0x63d2759f6390_p1" -> nullR0x63d2759f6390_p1;
+    "0x63d2759f61b0_p1" -> "0x63d2759f6210_p1" [label="R"];
+    "0x63d2759f6210_p1" [label="(17.000000, 15.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    "0x63d2759f6210_p1" -> "0x63d2759f62d0_p1" [label="L"];
+    "0x63d2759f62d0_p1" [label="(6.000000, 12.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f62d0_p1 [shape=point];
+    "0x63d2759f62d0_p1" -> nullL0x63d2759f62d0_p1;
+    "0x63d2759f62d0_p1" -> "0x63d2759f6330_p1" [label="R"];
+    "0x63d2759f6330_p1" [label="(9.000000, 1.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6330_p1 [shape=point];
+    "0x63d2759f6330_p1" -> nullL0x63d2759f6330_p1;
+    nullR0x63d2759f6330_p1 [shape=point];
+    "0x63d2759f6330_p1" -> nullR0x63d2759f6330_p1;
+    "0x63d2759f6210_p1" -> "0x63d2759f6270_p1" [label="R"];
+    "0x63d2759f6270_p1" [label="(13.000000, 15.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    "0x63d2759f6270_p1" -> "0x63d2759f63f0_p1" [label="L"];
+    "0x63d2759f63f0_p1" [label="(10.000000, 19.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f63f0_p1 [shape=point];
+    "0x63d2759f63f0_p1" -> nullL0x63d2759f63f0_p1;
+    nullR0x63d2759f63f0_p1 [shape=point];
+    "0x63d2759f63f0_p1" -> nullR0x63d2759f63f0_p1;
+    nullR0x63d2759f6270_p1 [shape=point];
+    "0x63d2759f6270_p1" -> nullR0x63d2759f6270_p1;
+  }
+
+  subgraph cluster_passo_2 {
+    label="Passo 2: Inserção do ponto (7, 13)";
+    color="#cbd5e1"; style="rounded";
+    "0x63d2759f61b0_p2" [label="(3.000000, 6.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    "0x63d2759f61b0_p2" -> "0x63d2759f6390_p2" [label="L"];
+    "0x63d2759f6390_p2" [label="(2.000000, 7.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6390_p2 [shape=point];
+    "0x63d2759f6390_p2" -> nullL0x63d2759f6390_p2;
+    nullR0x63d2759f6390_p2 [shape=point];
+    "0x63d2759f6390_p2" -> nullR0x63d2759f6390_p2;
+    "0x63d2759f61b0_p2" -> "0x63d2759f6210_p2" [label="R"];
+    "0x63d2759f6210_p2" [label="(17.000000, 15.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    "0x63d2759f6210_p2" -> "0x63d2759f62d0_p2" [label="L"];
+    "0x63d2759f62d0_p2" [label="(6.000000, 12.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f62d0_p2 [shape=point];
+    "0x63d2759f62d0_p2" -> nullL0x63d2759f62d0_p2;
+    "0x63d2759f62d0_p2" -> "0x63d2759f6330_p2" [label="R"];
+    "0x63d2759f6330_p2" [label="(9.000000, 1.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6330_p2 [shape=point];
+    "0x63d2759f6330_p2" -> nullL0x63d2759f6330_p2;
+    "0x63d2759f6330_p2" -> "0x63d2759f6630_p2" [label="R"];
+    "0x63d2759f6630_p2" [label="(7.000000, 13.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6630_p2 [shape=point];
+    "0x63d2759f6630_p2" -> nullL0x63d2759f6630_p2;
+    nullR0x63d2759f6630_p2 [shape=point];
+    "0x63d2759f6630_p2" -> nullR0x63d2759f6630_p2;
+    "0x63d2759f6210_p2" -> "0x63d2759f6270_p2" [label="R"];
+    "0x63d2759f6270_p2" [label="(13.000000, 15.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    "0x63d2759f6270_p2" -> "0x63d2759f63f0_p2" [label="L"];
+    "0x63d2759f63f0_p2" [label="(10.000000, 19.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f63f0_p2 [shape=point];
+    "0x63d2759f63f0_p2" -> nullL0x63d2759f63f0_p2;
+    nullR0x63d2759f63f0_p2 [shape=point];
+    "0x63d2759f63f0_p2" -> nullR0x63d2759f63f0_p2;
+    nullR0x63d2759f6270_p2 [shape=point];
+    "0x63d2759f6270_p2" -> nullR0x63d2759f6270_p2;
+  }
+
+  subgraph cluster_passo_3 {
+    label="Passo 3: Remoção do ponto (17, 15) por substituição de mínimo no eixo";
+    color="#cbd5e1"; style="rounded";
+    "0x63d2759f61b0_p3" [label="(3.000000, 6.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    "0x63d2759f61b0_p3" -> "0x63d2759f6390_p3" [label="L"];
+    "0x63d2759f6390_p3" [label="(2.000000, 7.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6390_p3 [shape=point];
+    "0x63d2759f6390_p3" -> nullL0x63d2759f6390_p3;
+    nullR0x63d2759f6390_p3 [shape=point];
+    "0x63d2759f6390_p3" -> nullR0x63d2759f6390_p3;
+    "0x63d2759f61b0_p3" -> "0x63d2759f6210_p3" [label="R"];
+    "0x63d2759f6210_p3" [label="(13.000000, 15.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    "0x63d2759f6210_p3" -> "0x63d2759f62d0_p3" [label="L"];
+    "0x63d2759f62d0_p3" [label="(6.000000, 12.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f62d0_p3 [shape=point];
+    "0x63d2759f62d0_p3" -> nullL0x63d2759f62d0_p3;
+    "0x63d2759f62d0_p3" -> "0x63d2759f6330_p3" [label="R"];
+    "0x63d2759f6330_p3" [label="(9.000000, 1.000000)\nEixo: 1", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6330_p3 [shape=point];
+    "0x63d2759f6330_p3" -> nullL0x63d2759f6330_p3;
+    "0x63d2759f6330_p3" -> "0x63d2759f6630_p3" [label="R"];
+    "0x63d2759f6630_p3" [label="(7.000000, 13.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6630_p3 [shape=point];
+    "0x63d2759f6630_p3" -> nullL0x63d2759f6630_p3;
+    nullR0x63d2759f6630_p3 [shape=point];
+    "0x63d2759f6630_p3" -> nullR0x63d2759f6630_p3;
+    "0x63d2759f6210_p3" -> "0x63d2759f6270_p3" [label="R"];
+    "0x63d2759f6270_p3" [label="(10.000000, 19.000000)\nEixo: 0", style=filled, fillcolor=lightgray];
+    nullL0x63d2759f6270_p3 [shape=point];
+    "0x63d2759f6270_p3" -> nullL0x63d2759f6270_p3;
+    nullR0x63d2759f6270_p3 [shape=point];
+    "0x63d2759f6270_p3" -> nullR0x63d2759f6270_p3;
+  }
+
+}
